@@ -1,0 +1,1 @@
+Figure 1-3. Each sentence is split into words (tokens) by splitting on a whitespace.

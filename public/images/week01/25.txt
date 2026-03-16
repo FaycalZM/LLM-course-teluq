@@ -1,0 +1,1 @@
+Figure 1-21. The architecture of a BERT base model with 12 encoders.

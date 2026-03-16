@@ -1,0 +1,1 @@
+Figure 4-16. After embedding the label descriptions and the documents, we can use cosine similarity for each label document pair.

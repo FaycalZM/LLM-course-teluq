@@ -1,0 +1,1 @@
+Figure 3-22. Local attention boosts performance by only paying attention to a small number of previous positions.

@@ -1,0 +1,1 @@
+Figure 3-17. We get better LLMs by doing attention multiple times in parallel, increasing the model’s capacity to attend to different types of information.

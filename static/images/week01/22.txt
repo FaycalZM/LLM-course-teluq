@@ -1,0 +1,1 @@
+Figure 1-18. Self-attention attends to all parts of the input sequence so that it can “look” both forward and back in a single sequence.

@@ -1,0 +1,1 @@
+Figure 1-4. A vocabulary is created by retaining all unique words across both sentences.

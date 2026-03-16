@@ -1,0 +1,1 @@
+Figure 2-15. A vocabulary of words and their starting, random, uninitialized embedding vectors.

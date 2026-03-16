@@ -1,0 +1,1 @@
+Figure 1-13. Using word2vec embeddings, a context embedding is generated that repre‐ sents the entire sequence.

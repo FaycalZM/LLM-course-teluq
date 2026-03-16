@@ -1,0 +1,1 @@
+Figure 6-1. Foundation models are often released in several different sizes.

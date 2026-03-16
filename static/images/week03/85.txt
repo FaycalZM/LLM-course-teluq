@@ -1,0 +1,1 @@
+Figure 3-32. Rotary embeddings are applied in the attention step, not at the start of the forward pass.

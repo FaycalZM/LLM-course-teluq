@@ -1,0 +1,1 @@
+Figure 6-3. The model chooses the next token to generate based on their likelihood scores.

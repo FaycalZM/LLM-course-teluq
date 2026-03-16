@@ -1,0 +1,1 @@
+Figure 2-12. Each generated training example shows a pair of neighboring words.

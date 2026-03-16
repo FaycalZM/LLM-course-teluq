@@ -1,0 +1,1 @@
+Figure 3-21. Attention combines the relevant information of previous positions by multi‐ plying their relevance scores by their respective value vectors.

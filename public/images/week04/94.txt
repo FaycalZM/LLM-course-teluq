@@ -1,0 +1,1 @@
+Figure 4-8. The confusion matrix describes four types of predictions we can make.

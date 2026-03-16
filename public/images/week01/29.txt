@@ -1,0 +1,1 @@
+Figure 1-25. GPT models quickly grew in size with each iteration.

@@ -1,0 +1,1 @@
+Figure 1-5. A bag-of-words is created by counting individual words. These values are referred to as vector representations.

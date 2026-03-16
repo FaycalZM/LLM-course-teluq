@@ -1,0 +1,1 @@
+Figure 6-4. A higher increases the likelihood that less probable tokens are generated and vice versa.

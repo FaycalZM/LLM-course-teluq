@@ -1,0 +1,1 @@
+Figure 1-6. A neural network consists of interconnected layers of nodes where each connection is a linear equation.

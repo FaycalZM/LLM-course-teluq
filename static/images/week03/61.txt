@@ -1,0 +1,1 @@
+Figure 3-8. Each token is processed through its own stream of computation (with some interaction between them in attention steps, as we’ll later see).

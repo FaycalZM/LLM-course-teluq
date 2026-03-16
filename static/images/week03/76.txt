@@ -1,0 +1,1 @@
+Figure 3-23. Full attention versus sparse attention. Figure 3-24 explains the coloring. (Source: “Generating long sequences with sparse transformers”.)

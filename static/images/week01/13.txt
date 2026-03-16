@@ -1,0 +1,1 @@
+Figure 1-9. Embeddings of words that are similar will be close to each other in dimen‐ sional space.
