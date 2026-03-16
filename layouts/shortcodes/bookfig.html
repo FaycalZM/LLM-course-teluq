@@ -1,0 +1,13 @@
+{{ $src := .Get "src" }}
+{{ $week := .Get "week" }}
+{{ $captionPath := printf "static/images/week%s/%s.txt" $week $src }}
+{{ $caption := "" }}
+{{ if fileExists $captionPath }}
+  {{ $caption = readFile $captionPath }}
+{{ else }}
+  {{ $caption = printf "Missing caption for %s" $src }}
+{{ end }}
+<figure class="bookfig">
+  <img src="/images/week{{ $week }}/{{ $src }}" alt="{{ $caption }}">
+  <figcaption>{{ $caption }}</figcaption>
+</figure>
