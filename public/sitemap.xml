@@ -2,42 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:65484/docs/test/</loc>
+    <loc>//localhost:1313/docs/ch1-fondements/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/</loc>
+    <loc>//localhost:1313/docs/test/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week01/</loc>
+    <loc>//localhost:1313/docs/ch1-fondements/week01/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week02/</loc>
+    <loc>//localhost:1313/docs/ch3-ingenierie/week11/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week03/</loc>
+    <loc>//localhost:1313/docs/ch2-science/week06/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week04/</loc>
+    <loc>//localhost:1313/docs/ch2-science/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week05/</loc>
+    <loc>//localhost:1313/docs/ch3-ingenierie/week12/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week06/</loc>
+    <loc>//localhost:1313/docs/ch1-fondements/week02/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week07/</loc>
+    <loc>//localhost:1313/docs/ch2-science/week07/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week08/</loc>
+    <loc>//localhost:1313/docs/ch3-ingenierie/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week09/</loc>
+    <loc>//localhost:1313/docs/ch3-ingenierie/week13/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week10/</loc>
+    <loc>//localhost:1313/docs/ch1-fondements/week03/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week11/</loc>
+    <loc>//localhost:1313/docs/ch2-science/week08/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week12/</loc>
+    <loc>//localhost:1313/docs/ch3-ingenierie/week14/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week13/</loc>
+    <loc>//localhost:1313/docs/ch1-fondements/week04/</loc>
   </url><url>
-    <loc>//localhost:65484/docs/week14/</loc>
+    <loc>//localhost:1313/docs/ch2-science/week09/</loc>
   </url><url>
-    <loc>//localhost:65484/categories/</loc>
+    <loc>//localhost:1313/docs/ch2-science/week10/</loc>
   </url><url>
-    <loc>//localhost:65484/</loc>
+    <loc>//localhost:1313/docs/ch1-fondements/week05/</loc>
   </url><url>
-    <loc>//localhost:65484/tags/</loc>
+    <loc>//localhost:1313/docs/</loc>
+  </url><url>
+    <loc>//localhost:1313/categories/</loc>
+  </url><url>
+    <loc>//localhost:1313/</loc>
+  </url><url>
+    <loc>//localhost:1313/tags/</loc>
   </url>
 </urlset>
