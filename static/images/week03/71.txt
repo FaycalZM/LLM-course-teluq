@@ -1,1 +1,1 @@
-Figure 3-18. Before starting the self-attention calculation, we have the inputs to the layer and projection matrices for queries, keys, and values.
+Figure 3-12. Before starting the self-attention calculation, we have the inputs to the layer and projection matrices for queries, keys, and values.

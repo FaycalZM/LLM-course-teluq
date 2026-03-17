@@ -1,1 +1,1 @@
-Figure 1-11. Two recurrent neural networks (decoder and encoder) translating an input sequence from English to Dutch.
+Figure 1-10. Two recurrent neural networks (decoder and encoder) translating an input sequence from English to Dutch.

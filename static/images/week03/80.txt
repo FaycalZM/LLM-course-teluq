@@ -1,1 +1,1 @@
-Figure 3-27. Multi-query attention presents a more efficient attention mechanism by sharing the keys and values matrices across all the attention heads.
+Figure 3-20. Multi-query attention presents a more efficient attention mechanism by sharing the keys and values matrices across all the attention heads.

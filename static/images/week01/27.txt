@@ -1,1 +1,1 @@
-Figure 1-23. After pretraining BERT on masked language model, we fine-tune it for specific tasks.
+Figure 1-22. After pretraining BERT on masked language model, we fine-tune it for specific tasks.

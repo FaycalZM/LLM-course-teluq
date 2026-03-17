@@ -1,1 +1,1 @@
-Figure 4-13. In zero-shot classification, we have no labeled data, only the labels them‐ selves. The zero-shot model decides how the input is related to the candidate labels.
+Figure 4-9. In zero-shot classification, we have no labeled data, only the labels them‐ selves. The zero-shot model decides how the input is related to the candidate labels.

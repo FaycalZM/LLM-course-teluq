@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="La fin de l’amnésie séquentielle : Le saut quantique de l’IA#Nous arrivons maintenant au moment le plus électrisant de notre récit ! Imaginez que vous deviez traduire un paragraphe complexe. Jusqu’ici, avec les RNN que nous avons vus en section 1.2, je vous forçais à lire chaque mot, à le garder en mémoire, puis à tout oublier pour passer au suivant, en espérant que votre cerveau tienne le coup jusqu’au point final. C’est épuisant, n’est-ce pas ?
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2e3440">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="//localhost:1313/docs/ch1-fondements/week01/section-1-3/">
+  <meta property="og:site_name" content="LLM Course">
+  <meta property="og:title" content="1.3 Le paradigme de l&#39;attention">
+  <meta property="og:description" content="La fin de l’amnésie séquentielle : Le saut quantique de l’IA#Nous arrivons maintenant au moment le plus électrisant de notre récit ! Imaginez que vous deviez traduire un paragraphe complexe. Jusqu’ici, avec les RNN que nous avons vus en section 1.2, je vous forçais à lire chaque mot, à le garder en mémoire, puis à tout oublier pour passer au suivant, en espérant que votre cerveau tienne le coup jusqu’au point final. C’est épuisant, n’est-ce pas ?">
+  <meta property="og:locale" content="fr">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+
+
+  <meta itemprop="name" content="1.3 Le paradigme de l&#39;attention">
+  <meta itemprop="description" content="La fin de l’amnésie séquentielle : Le saut quantique de l’IA#Nous arrivons maintenant au moment le plus électrisant de notre récit ! Imaginez que vous deviez traduire un paragraphe complexe. Jusqu’ici, avec les RNN que nous avons vus en section 1.2, je vous forçais à lire chaque mot, à le garder en mémoire, puis à tout oublier pour passer au suivant, en espérant que votre cerveau tienne le coup jusqu’au point final. C’est épuisant, n’est-ce pas ?">
+  <meta itemprop="wordCount" content="1354">
+
+<title>1.3 Le paradigme de l&#39;attention | LLM Course</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="//localhost:1313/docs/ch1-fondements/week01/section-1-3/">
+<link rel="stylesheet" href="/book.min.cc2c524ed250aac81b23d1f4af87344917b325208841feca0968fe450f570575.css" integrity="sha256-zCxSTtJQqsgbI9H0r4c0SRezJSCIQf7KCWj&#43;RQ9XBXU=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/fr.search.min.44bea90aca060020062f6550c34beed0b0db07b937c67165a74b019ab894896f.js" integrity="sha256-RL6pCsoGACAGL2VQw0vu0LDbB7k3xnFlp0sBmriUiW8=" crossorigin="anonymous"></script>
+
+
+
+  <link rel="stylesheet" href="/css/colab.css">
+
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/livre.jpg" alt="Logo" /><span>LLM Course</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Rechercher"
+    aria-label="Rechercher"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d5ffa984d1889a21a05a9c923fa19a92" class="toggle" checked />
+    <label for="section-d5ffa984d1889a21a05a9c923fa19a92" class="flex">
+      <a role="button" class="">
+        Fondements des LLM</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/" class="">
+      Semaine 1 : Introduction aux LLM et historique du NLP</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/introduction/" class="">
+      Introduction</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-1/" class="">
+      1.1 Évolution du Traitement du Langage Naturel (NLP)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-2/" class="">
+      1.2 Limites des architectures séquentielles : RNN et LSTM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-3/" class="active">
+      1.3 Le paradigme de l&#39;attention</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-4/" class="">
+      1.4 Définition et applications des LLM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/lab/" class="">
+      Laboratoire</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/quiz/" class="">
+      Quiz</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 2</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 3</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 4</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 5</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-19671ec13f699b82235aadad56e3d8e2" class="toggle"  />
+    <label for="section-19671ec13f699b82235aadad56e3d8e2" class="flex">
+      <a role="button" class="">
+        Science des LLM</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 6</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 7</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 8</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 9</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 10</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-26878fd51edb23a5742cc9bff6d7b89d" class="toggle"  />
+    <label for="section-26878fd51edb23a5742cc9bff6d7b89d" class="flex">
+      <a role="button" class="">
+        Ingénierie des LLM</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 11</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 12</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 13</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 14</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>1.3 Le paradigme de l&#39;attention</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#la-fin-de-lamnésie-séquentielle--le-saut-quantique-de-lia">La fin de l&rsquo;amnésie séquentielle : Le saut quantique de l&rsquo;IA</a></li>
+    <li><a href="#lattention-traditionnelle--un-pansement-sur-les-rnn">L&rsquo;attention traditionnelle : Un pansement sur les RNN</a></li>
+    <li><a href="#la-self-attention--le-dialogue-interne-des-mots">La Self-Attention : Le dialogue interne des mots</a></li>
+    <li><a href="#larchitecture-transformer--une-cathédrale-de-calcul">L&rsquo;Architecture Transformer : Une cathédrale de calcul</a></li>
+    <li><a href="#pourquoi-est-ce-mieux-que-les-rnn--efficacité-et-parallélisation">Pourquoi est-ce &ldquo;mieux&rdquo; que les RNN ? (Efficacité et Parallélisation)</a></li>
+    <li><a href="#exemple-concret--le-chat-poursuivait-la-souris-parce-quelle-avait-faim">Exemple concret : &ldquo;Le chat poursuivait la souris parce qu&rsquo;elle avait faim&rdquo;</a></li>
+    <li><a href="#les-piliers-du-transformer--multi-head-attention-et-feedforward">Les piliers du Transformer : Multi-Head Attention et Feedforward</a></li>
+    <li><a href="#note-déthique--la-puissance-et-lopacité">Note d&rsquo;Éthique : La puissance et l&rsquo;opacité</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="la-fin-de-lamnésie-séquentielle--le-saut-quantique-de-lia">La fin de l&rsquo;amnésie séquentielle : Le saut quantique de l&rsquo;IA<a class="anchor" href="#la-fin-de-lamn%c3%a9sie-s%c3%a9quentielle--le-saut-quantique-de-lia">#</a></h2>
+<p>Nous arrivons maintenant au moment le plus électrisant de notre récit ! Imaginez que vous deviez traduire un paragraphe complexe. Jusqu&rsquo;ici, avec les RNN que nous avons vus en section 1.2, je vous forçais à lire chaque mot, à le garder en mémoire, puis à tout oublier pour passer au suivant, en espérant que votre cerveau tienne le coup jusqu&rsquo;au point final. C&rsquo;est épuisant, n&rsquo;est-ce pas ?</p>
+<p>En 2017, une équipe de chercheurs chez Google a publié un article dont le titre résonne encore comme un manifeste : <strong>&ldquo;Attention Is All You Need&rdquo;</strong> (Vaswani et al.). Leur proposition était radicale : débarrassons-nous totalement de la récurrence. Arrêtons de traiter le langage de gauche à droite. À la place, utilisons un mécanisme qui permet à la machine de &ldquo;balayer&rdquo; toute la phrase d&rsquo;un seul regard et de décider quels mots sont les plus importants les uns pour les autres. 🔑 <strong>C&rsquo;est la naissance du mécanisme d&rsquo;attention, et c&rsquo;est ce qui a rendu possible l&rsquo;existence de ChatGPT.</strong></p>
+<h2 id="lattention-traditionnelle--un-pansement-sur-les-rnn">L&rsquo;attention traditionnelle : Un pansement sur les RNN<a class="anchor" href="#lattention-traditionnelle--un-pansement-sur-les-rnn">#</a></h2>
+<p>Avant la révolution totale, l&rsquo;attention a d&rsquo;abord été utilisée comme une béquille pour aider les décodeurs RNN. Comme nous l&rsquo;avons vu, le décodeur souffrait du goulot d&rsquo;étranglement du &ldquo;vecteur de contexte&rdquo;.</p>
+<p>Regardez la <strong>Figure 1-14 : Attention dans le décodeur RNN</strong>. Au lieu de ne recevoir que le dernier état caché de l&rsquo;encodeur, le décodeur reçoit maintenant une &ldquo;ligne directe&rdquo; vers <em>tous</em> les mots de la phrase source. À chaque fois qu&rsquo;il génère un mot dans la langue cible, il demande : &ldquo;Sur quel mot de la phrase d&rsquo;origine dois-je me concentrer maintenant ?&rdquo;. S&rsquo;il traduit &ldquo;chat&rdquo;, il va accorder une attention maximale au vecteur du mot &ldquo;cat&rdquo; dans la phrase source. C&rsquo;était une amélioration majeure, mais le modèle restait lent car il était toujours coincé dans une structure récurrente.</p>
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/19.png" alt="Figure 1-14. After generating the words “Ik,” “hou,” and “van,” the attention mechanism of the decoder enables it to focus on the word “llamas” before it generates the Dutch translation (“lama’s”).">
+  <figcaption>Figure 1-14. After generating the words “Ik,” “hou,” and “van,” the attention mechanism of the decoder enables it to focus on the word “llamas” before it generates the Dutch translation (“lama’s”).</figcaption>
+</figure>
+
+<h2 id="la-self-attention--le-dialogue-interne-des-mots">La Self-Attention : Le dialogue interne des mots<a class="anchor" href="#la-self-attention--le-dialogue-interne-des-mots">#</a></h2>
+<p>La véritable rupture survient avec la <strong>Self-Attention</strong> (Auto-attention). Ici, ce n&rsquo;est plus seulement le décodeur qui regarde l&rsquo;encodeur, mais les mots d&rsquo;une même phrase qui se regardent entre eux pour s&rsquo;enrichir mutuellement.</p>
+<p>Comme l&rsquo;illustre la <strong>Figure 1-13 : Mécanisme d&rsquo;attention</strong>, la self-attention permet à chaque mot de créer des liens avec ses voisins. 🔑 <strong>Je dois insister sur cette intuition :</strong> dans la phrase &ldquo;La banque a refusé le prêt car elle jugeait le risque trop élevé&rdquo;, comment le modèle sait-il que &ldquo;elle&rdquo; désigne &ldquo;la banque&rdquo; et non &ldquo;le prêt&rdquo; ?</p>
+<ul>
+<li>Grâce à la self-attention, le token &ldquo;elle&rdquo; va &ldquo;envoyer des signaux&rdquo; à tous les autres mots.</li>
+<li>Le mot &ldquo;jugeait&rdquo; va répondre fortement, car dans le monde réel, ce sont les institutions (banques) qui jugent, pas les prêts.</li>
+<li>Le vecteur de &ldquo;elle&rdquo; va alors absorber une partie de l&rsquo;identité sémantique de &ldquo;banque&rdquo;.</li>
+</ul>
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/18.png" alt="Figure 1-13. Attention allows a model to “attend” to certain parts of sequences that might relate more or less to one another.">
+  <figcaption>Figure 1-13. Attention allows a model to “attend” to certain parts of sequences that might relate more or less to one another.</figcaption>
+</figure>
+
+<blockquote class="book-hint warning">
+<p><strong>Attention : erreur fréquente ici !</strong> L&rsquo;attention n&rsquo;est pas une simple recherche de mots-clés. C&rsquo;est un calcul de scores de pertinence dynamique qui transforme un embedding statique (vu en 1.1) en un <strong>embedding contextuel</strong>.</p>
+</blockquote>
+<h2 id="larchitecture-transformer--une-cathédrale-de-calcul">L&rsquo;Architecture Transformer : Une cathédrale de calcul<a class="anchor" href="#larchitecture-transformer--une-cath%c3%a9drale-de-calcul">#</a></h2>
+<p>Respirez, nous allons maintenant entrer dans le plan de cette cathédrale technologique. Le Transformer n&rsquo;est pas un seul bloc, c&rsquo;est un assemblage ingénieux illustré dans les <strong>Figures 1-15 à 1-19</strong>.</p>
+<ol>
+<li><strong>L&rsquo;Empilement (Stacks)</strong> : Au lieu d&rsquo;une seule couche, nous empilons des blocs. Chaque bloc affine la compréhension du texte. La <strong>Figure 1-15</strong> montre comment l&rsquo;information circule à travers ces couches.</li>
+<li><strong>L&rsquo;Encodeur (Le Compréhenseur)</strong> : Son rôle est de lire l&rsquo;entrée et de créer une carte ultra-précise des relations entre les mots. Comme vous le voyez en <strong>Figure 1-16</strong>, il utilise la self-attention pour que chaque mot &ldquo;sache&rdquo; qui sont ses voisins et quel est leur rôle.</li>
+<li><strong>Le Décodeur (Le Générateur)</strong> : Il a une particularité cruciale montrée en <strong>Figure 1-18</strong> et <strong>1-19</strong> : la <strong>Masked Self-Attention</strong>. 🔑 <strong>Notez bien ce point :</strong> Lors de l&rsquo;entraînement, le décodeur n&rsquo;a pas le droit de tricher. Il ne peut pas regarder les mots &ldquo;futurs&rdquo; de la phrase qu&rsquo;il doit générer. On cache (mask) la suite pour le forcer à apprendre à prédire.</li>
+</ol>
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/20.png" alt="Figure 1-15. The Transformer is a combination of stacked encoder and decoder blocks where the input flows through each encoder and decoder.">
+  <figcaption>Figure 1-15. The Transformer is a combination of stacked encoder and decoder blocks where the input flows through each encoder and decoder.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/21.png" alt="Figure 1-16. An encoder block revolves around self-attention to generate intermediate representations.">
+  <figcaption>Figure 1-16. An encoder block revolves around self-attention to generate intermediate representations.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/22.png" alt="Figure 1-17. Self-attention attends to all parts of the input sequence so that it can “look” both forward and back in a single sequence.">
+  <figcaption>Figure 1-17. Self-attention attends to all parts of the input sequence so that it can “look” both forward and back in a single sequence.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/23.png" alt="Figure 1-18. The decoder has an additional attention layer that attends to the output of the encoder.">
+  <figcaption>Figure 1-18. The decoder has an additional attention layer that attends to the output of the encoder.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/24.png" alt="Figure 1-19. Only attend to previous tokens to prevent “looking into the future.”">
+  <figcaption>Figure 1-19. Only attend to previous tokens to prevent “looking into the future.”</figcaption>
+</figure>
+
+<h2 id="pourquoi-est-ce-mieux-que-les-rnn--efficacité-et-parallélisation">Pourquoi est-ce &ldquo;mieux&rdquo; que les RNN ? (Efficacité et Parallélisation)<a class="anchor" href="#pourquoi-est-ce-mieux-que-les-rnn--efficacit%c3%a9-et-parall%c3%a9lisation">#</a></h2>
+<p>C&rsquo;est ici que l&rsquo;aspect &ldquo;Ingénierie&rdquo; devient fascinant. Les RNN étaient comme une file d&rsquo;attente à la poste : chaque client (mot) devait attendre que le précédent ait fini. Le Transformer, lui, est comme un immense open-space où tout le monde se parle en même temps.</p>
+<p>Comme il n&rsquo;y a plus de dépendance séquentielle pour lire la phrase, nous pouvons envoyer tous les mots d&rsquo;un coup dans le GPU. Cela permet de traiter des quantités de données astronomiques. 🔑 <strong>C&rsquo;est le secret du passage à l&rsquo;échelle (scaling) :</strong> on peut entraîner un Transformer sur tout l&rsquo;Internet car le calcul est massivement parallèle.</p>
+<h2 id="exemple-concret--le-chat-poursuivait-la-souris-parce-quelle-avait-faim">Exemple concret : &ldquo;Le chat poursuivait la souris parce qu&rsquo;elle avait faim&rdquo;<a class="anchor" href="#exemple-concret--le-chat-poursuivait-la-souris-parce-quelle-avait-faim">#</a></h2>
+<p>Décortiquons cet exemple pour bien fixer l&rsquo;intuition de l&rsquo;attention contextuelle.</p>
+<ul>
+<li><strong>Le mot cible</strong> : &ldquo;elle&rdquo;.</li>
+<li><strong>Les candidats</strong> : &ldquo;chat&rdquo; (masculin en français, mais imaginons une structure ambiguë) ou &ldquo;souris&rdquo; (féminin).</li>
+<li><strong>Le signal de contexte</strong> : &ldquo;avait faim&rdquo;.</li>
+<li><strong>Le rôle de l&rsquo;attention</strong> : Dans un RNN, si la phrase était très longue (&ldquo;Le chat&hellip; [10 mots] &hellip; la souris&hellip; [10 mots] &hellip; elle&rdquo;), le modèle risquerait d&rsquo;oublier &ldquo;chat&rdquo;.</li>
+<li>Dans un Transformer, le mot &ldquo;faim&rdquo; va illuminer à la fois &ldquo;chat&rdquo; et &ldquo;souris&rdquo;. Cependant, statistiquement, l&rsquo;action de &ldquo;poursuivre&rdquo; est souvent motivée par la faim chez le prédateur, mais la structure grammaticale lie &ldquo;elle&rdquo; à &ldquo;souris&rdquo;. L&rsquo;attention va calculer un score élevé entre &ldquo;elle&rdquo; et &ldquo;souris&rdquo;.</li>
+</ul>
+<p>Vous voyez ? La machine ne comprend pas la biologie, elle calcule des probabilités de connexion basées sur des milliards d&rsquo;exemples similaires. C&rsquo;est une forme de compréhension émergente par la statistique.</p>
+<h2 id="les-piliers-du-transformer--multi-head-attention-et-feedforward">Les piliers du Transformer : Multi-Head Attention et Feedforward<a class="anchor" href="#les-piliers-du-transformer--multi-head-attention-et-feedforward">#</a></h2>
+<blockquote class="book-hint info">
+<p>🔑 <strong>Je dois insister sur deux composants que nous détaillerons en Semaine 3 mais dont vous devez connaître le nom dès maintenant :</strong></p>
+<ol>
+<li><strong>Multi-Head Attention (Attention à têtes multiples)</strong> : Au lieu de regarder la phrase d&rsquo;une seule façon, le modèle utilise plusieurs &ldquo;têtes&rdquo;. Une tête peut se concentrer sur la grammaire, une autre sur les entités (noms propres), une autre sur les sentiments. C&rsquo;est comme regarder une scène avec plusieurs caméras sous différents angles.</li>
+<li><strong>Feedforward Networks (Réseaux à propagation avant)</strong> : Après avoir récupéré l&rsquo;information des autres mots via l&rsquo;attention, chaque mot passe par un petit réseau de neurones individuel pour &ldquo;digérer&rdquo; cette information. C&rsquo;est ici que le modèle stocke une grande partie de sa &ldquo;connaissance du monde&rdquo;.</li>
+</ol>
+</blockquote>
+<h2 id="note-déthique--la-puissance-et-lopacité">Note d&rsquo;Éthique : La puissance et l&rsquo;opacité<a class="anchor" href="#note-d%c3%a9thique--la-puissance-et-lopacit%c3%a9">#</a></h2>
+<blockquote class="book-hint danger">
+<p>Cette architecture est incroyablement puissante, mais elle nous confronte à un défi majeur : l&rsquo;<strong>interprétabilité</strong>. Dans une &ldquo;Sacoche de mots&rdquo;, on sait pourquoi le modèle a classé un mail en spam (il a compté le mot &ldquo;argent&rdquo;). Dans un Transformer de 175 milliards de paramètres (comme GPT-3), comprendre exactement pourquoi une tête d&rsquo;attention au niveau de la couche 42 a décidé de lier deux mots précis est presque impossible.</p>
+<p>🔑 <strong>C&rsquo;est votre responsabilité :</strong> En tant qu&rsquo;experts, vous ne devez pas voir l&rsquo;attention comme une baguette magique, mais comme un mécanisme statistique complexe dont les erreurs (hallucinations) sont souvent le fruit de corrélations fallacieuses dans les données.</p>
+</blockquote>
+<p>Voilà pour le mécanisme d&rsquo;attention ! C&rsquo;est le moteur de la voiture. Dans la prochaine section, nous allons voir à quoi ressemble la voiture finie : le Large Language Model.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/docs/ch1-fondements/week01/section-1-2/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>1.2 Limites des architectures séquentielles : RNN et LSTM</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/docs/ch1-fondements/week01/section-1-4/" class="flex align-center">
+        <span>1.4 Définition et applications des LLM</span>
+        <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#la-fin-de-lamnésie-séquentielle--le-saut-quantique-de-lia">La fin de l&rsquo;amnésie séquentielle : Le saut quantique de l&rsquo;IA</a></li>
+    <li><a href="#lattention-traditionnelle--un-pansement-sur-les-rnn">L&rsquo;attention traditionnelle : Un pansement sur les RNN</a></li>
+    <li><a href="#la-self-attention--le-dialogue-interne-des-mots">La Self-Attention : Le dialogue interne des mots</a></li>
+    <li><a href="#larchitecture-transformer--une-cathédrale-de-calcul">L&rsquo;Architecture Transformer : Une cathédrale de calcul</a></li>
+    <li><a href="#pourquoi-est-ce-mieux-que-les-rnn--efficacité-et-parallélisation">Pourquoi est-ce &ldquo;mieux&rdquo; que les RNN ? (Efficacité et Parallélisation)</a></li>
+    <li><a href="#exemple-concret--le-chat-poursuivait-la-souris-parce-quelle-avait-faim">Exemple concret : &ldquo;Le chat poursuivait la souris parce qu&rsquo;elle avait faim&rdquo;</a></li>
+    <li><a href="#les-piliers-du-transformer--multi-head-attention-et-feedforward">Les piliers du Transformer : Multi-Head Attention et Feedforward</a></li>
+    <li><a href="#note-déthique--la-puissance-et-lopacité">Note d&rsquo;Éthique : La puissance et l&rsquo;opacité</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

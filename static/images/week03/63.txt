@@ -1,1 +1,1 @@
-Figure 3-10. When generating text, it’s important to cache the computation results of previous tokens instead of repeating the same calculation over and over again.
+Figure 3-7. When generating text, it’s important to cache the computation results of previous tokens instead of repeating the same calculation over and over again.

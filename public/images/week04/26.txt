@@ -1,1 +1,1 @@
-Figure 1-22. Train a BERT model by using masked language modeling.
+Figure 4-2. Train a BERT model by using masked language modeling.

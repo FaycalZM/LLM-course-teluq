@@ -1,1 +1,1 @@
-Figure 3-20. Scoring the relevance of previous tokens is accomplished by multiplying the query associated with the current position with the keys matrix.
+Figure 3-14. Scoring the relevance of previous tokens is accomplished by multiplying the query associated with the current position with the keys matrix.

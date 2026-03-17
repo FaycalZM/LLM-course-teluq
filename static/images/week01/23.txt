@@ -1,1 +1,1 @@
-Figure 1-19. The decoder has an additional attention layer that attends to the output of the encoder.
+Figure 1-18. The decoder has an additional attention layer that attends to the output of the encoder.

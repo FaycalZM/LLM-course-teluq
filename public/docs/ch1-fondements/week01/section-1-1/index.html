@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="L’aube du Language AI : L’illusion des règles et la réalité statistique#Pour comprendre pourquoi les modèles que nous utilisons aujourd’hui (comme GPT-4 ou Claude) sont si performants, il faut d’abord réaliser que pendant quarante ans, nous avons traité le langage comme un simple puzzle de symboles rigides.
+Comme vous pouvez l’observer sur la Figure 1-1 : Timeline historique du NLP, tout commence par des approches basées sur des règles manuelles. Dans les années 1950 et 1960, on pensait qu’il suffisait de coder toutes les règles de grammaire et tous les mots d’un dictionnaire pour qu’une machine “comprenne”. 🔑 Je dois insister : cette approche symbolique était condamnée. Pourquoi ? Parce que le langage humain n’est pas un code informatique stable. Il est vivant, pétri d’ambiguïtés, d’ironie et de contextes culturels changeants. Essayer de coder le langage avec des instructions if/then (si/alors), c’est comme essayer de vider l’océan avec une petite cuillère.
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2e3440">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="//localhost:1313/docs/ch1-fondements/week01/section-1-1/">
+  <meta property="og:site_name" content="LLM Course">
+  <meta property="og:title" content="1.1 Évolution du Traitement du Langage Naturel (NLP)">
+  <meta property="og:description" content="L’aube du Language AI : L’illusion des règles et la réalité statistique#Pour comprendre pourquoi les modèles que nous utilisons aujourd’hui (comme GPT-4 ou Claude) sont si performants, il faut d’abord réaliser que pendant quarante ans, nous avons traité le langage comme un simple puzzle de symboles rigides.
+Comme vous pouvez l’observer sur la Figure 1-1 : Timeline historique du NLP, tout commence par des approches basées sur des règles manuelles. Dans les années 1950 et 1960, on pensait qu’il suffisait de coder toutes les règles de grammaire et tous les mots d’un dictionnaire pour qu’une machine “comprenne”. 🔑 Je dois insister : cette approche symbolique était condamnée. Pourquoi ? Parce que le langage humain n’est pas un code informatique stable. Il est vivant, pétri d’ambiguïtés, d’ironie et de contextes culturels changeants. Essayer de coder le langage avec des instructions if/then (si/alors), c’est comme essayer de vider l’océan avec une petite cuillère.">
+  <meta property="og:locale" content="fr">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+
+
+  <meta itemprop="name" content="1.1 Évolution du Traitement du Langage Naturel (NLP)">
+  <meta itemprop="description" content="L’aube du Language AI : L’illusion des règles et la réalité statistique#Pour comprendre pourquoi les modèles que nous utilisons aujourd’hui (comme GPT-4 ou Claude) sont si performants, il faut d’abord réaliser que pendant quarante ans, nous avons traité le langage comme un simple puzzle de symboles rigides.
+Comme vous pouvez l’observer sur la Figure 1-1 : Timeline historique du NLP, tout commence par des approches basées sur des règles manuelles. Dans les années 1950 et 1960, on pensait qu’il suffisait de coder toutes les règles de grammaire et tous les mots d’un dictionnaire pour qu’une machine “comprenne”. 🔑 Je dois insister : cette approche symbolique était condamnée. Pourquoi ? Parce que le langage humain n’est pas un code informatique stable. Il est vivant, pétri d’ambiguïtés, d’ironie et de contextes culturels changeants. Essayer de coder le langage avec des instructions if/then (si/alors), c’est comme essayer de vider l’océan avec une petite cuillère.">
+  <meta itemprop="wordCount" content="1357">
+
+<title>1.1 Évolution du Traitement du Langage Naturel (NLP) | LLM Course</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="//localhost:1313/docs/ch1-fondements/week01/section-1-1/">
+<link rel="stylesheet" href="/book.min.cc2c524ed250aac81b23d1f4af87344917b325208841feca0968fe450f570575.css" integrity="sha256-zCxSTtJQqsgbI9H0r4c0SRezJSCIQf7KCWj&#43;RQ9XBXU=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/fr.search.min.44bea90aca060020062f6550c34beed0b0db07b937c67165a74b019ab894896f.js" integrity="sha256-RL6pCsoGACAGL2VQw0vu0LDbB7k3xnFlp0sBmriUiW8=" crossorigin="anonymous"></script>
+
+
+
+  <link rel="stylesheet" href="/css/colab.css">
+
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/livre.jpg" alt="Logo" /><span>LLM Course</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Rechercher"
+    aria-label="Rechercher"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d5ffa984d1889a21a05a9c923fa19a92" class="toggle" checked />
+    <label for="section-d5ffa984d1889a21a05a9c923fa19a92" class="flex">
+      <a role="button" class="">
+        Fondements des LLM</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/" class="">
+      Semaine 1 : Introduction aux LLM et historique du NLP</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/introduction/" class="">
+      Introduction</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-1/" class="active">
+      1.1 Évolution du Traitement du Langage Naturel (NLP)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-2/" class="">
+      1.2 Limites des architectures séquentielles : RNN et LSTM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-3/" class="">
+      1.3 Le paradigme de l&#39;attention</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-4/" class="">
+      1.4 Définition et applications des LLM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/lab/" class="">
+      Laboratoire</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/quiz/" class="">
+      Quiz</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 2</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 3</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 4</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 5</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-19671ec13f699b82235aadad56e3d8e2" class="toggle"  />
+    <label for="section-19671ec13f699b82235aadad56e3d8e2" class="flex">
+      <a role="button" class="">
+        Science des LLM</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 6</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 7</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 8</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 9</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 10</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-26878fd51edb23a5742cc9bff6d7b89d" class="toggle"  />
+    <label for="section-26878fd51edb23a5742cc9bff6d7b89d" class="flex">
+      <a role="button" class="">
+        Ingénierie des LLM</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 11</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 12</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 13</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 14</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>1.1 Évolution du Traitement du Langage Naturel (NLP)</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#laube-du-language-ai--lillusion-des-règles-et-la-réalité-statistique">L&rsquo;aube du Language AI : L&rsquo;illusion des règles et la réalité statistique</a></li>
+    <li><a href="#le-mécanisme-de-la-sacoche-de-mots-bag-of-words">Le mécanisme de la &ldquo;Sacoche de mots&rdquo; (Bag-of-Words)</a></li>
+    <li><a href="#de-tf-idf-aux-limites-de-la-représentation-creuse-sparse">De TF-IDF aux limites de la représentation creuse (Sparse)</a></li>
+    <li><a href="#la-révolution-de-2013--les-embeddings-denses-word2vec">La révolution de 2013 : Les Embeddings Denses (Word2Vec)</a></li>
+    <li><a href="#le-mur-de-la-polysémie--lexemple-bank">Le mur de la polysémie : L&rsquo;exemple &ldquo;bank&rdquo;</a></li>
+    <li><a href="#tableau-comparatif--approches-symboliques-vs-neuronales">Tableau comparatif : Approches Symboliques vs Neuronales</a></li>
+    <li><a href="#éthique-et-responsabilité--les-biais-dans-les-vecteurs">Éthique et Responsabilité : Les biais dans les vecteurs</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="laube-du-language-ai--lillusion-des-règles-et-la-réalité-statistique">L&rsquo;aube du Language AI : L&rsquo;illusion des règles et la réalité statistique<a class="anchor" href="#laube-du-language-ai--lillusion-des-r%c3%a8gles-et-la-r%c3%a9alit%c3%a9-statistique">#</a></h2>
+<p>Pour comprendre pourquoi les modèles que nous utilisons aujourd&rsquo;hui (comme GPT-4 ou Claude) sont si performants, il faut d&rsquo;abord réaliser que pendant quarante ans, nous avons traité le langage comme un simple puzzle de symboles rigides.</p>
+<p>Comme vous pouvez l&rsquo;observer sur la <strong>Figure 1-1 : Timeline historique du NLP</strong>, tout commence par des approches basées sur des règles manuelles. Dans les années 1950 et 1960, on pensait qu&rsquo;il suffisait de coder toutes les règles de grammaire et tous les mots d&rsquo;un dictionnaire pour qu&rsquo;une machine &ldquo;comprenne&rdquo;. 🔑 <strong>Je dois insister :</strong> cette approche symbolique était condamnée. Pourquoi ? Parce que le langage humain n&rsquo;est pas un code informatique stable. Il est vivant, pétri d&rsquo;ambiguïtés, d&rsquo;ironie et de contextes culturels changeants. Essayer de coder le langage avec des instructions <code>if/then</code> (si/alors), c&rsquo;est comme essayer de vider l&rsquo;océan avec une petite cuillère.</p>
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/5.png" alt="Figure 1-1. A peek into the history of Language AI.">
+  <figcaption>Figure 1-1. A peek into the history of Language AI.</figcaption>
+</figure>
+
+<p>À partir des années 1990, un changement radical s&rsquo;opère : nous cessons de dire à la machine <em>comment</em> le langage fonctionne, et nous commençons à lui montrer d&rsquo;immenses quantités de textes pour qu&rsquo;elle apprenne les statistiques d&rsquo;usage. C&rsquo;est l&rsquo;essor du NLP statistique, capable de réaliser les <strong>tâches typiques du Language AI</strong> illustrées en <strong>Figure 1-2</strong> : la classification de spams, l&rsquo;analyse de sentiments ou la traduction automatique rudimentaire.</p>
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/6.png" alt="Figure 1-2. Language AI is capable of many tasks by processing textual input.">
+  <figcaption>Figure 1-2. Language AI is capable of many tasks by processing textual input.</figcaption>
+</figure>
+
+<h2 id="le-mécanisme-de-la-sacoche-de-mots-bag-of-words">Le mécanisme de la &ldquo;Sacoche de mots&rdquo; (Bag-of-Words)<a class="anchor" href="#le-m%c3%a9canisme-de-la-sacoche-de-mots-bag-of-words">#</a></h2>
+<p>C&rsquo;est le point de départ technique de notre voyage. Imaginez que vous ayez un texte et que vous décidiez d&rsquo;ignorer totalement la syntaxe, la conjugaison et l&rsquo;ordre des mots. Vous jetez chaque mot dans un sac et vous comptez simplement combien de fois il apparaît. C&rsquo;est ce qu&rsquo;on appelle le <strong>Bag-of-Words (BoW)</strong>.</p>
+<p>Le processus, méticuleusement détaillé dans les <strong>Figures 1-3 à 1-5</strong>, se déroule en trois étapes cruciales que vous devez maîtriser :</p>
+<ol>
+<li><strong>Tokenisation</strong> : On découpe la phrase en morceaux de base (tokens). Pour les modèles simples, un token est souvent égal à un mot.</li>
+<li><strong>Construction du vocabulaire</strong> : On liste tous les mots uniques rencontrés dans l&rsquo;ensemble de nos textes (le corpus). Si nous avons 50 000 mots différents, notre &ldquo;sac&rdquo; a 50 000 étagères.</li>
+<li><strong>Vectorisation</strong> : Pour chaque phrase, on crée un vecteur (une suite de nombres). Si le mot &ldquo;chat&rdquo; est présent deux fois, on inscrit &ldquo;2&rdquo; à l&rsquo;index correspondant au mot &ldquo;chat&rdquo; dans notre immense liste.</li>
+</ol>
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/7.png" alt="Figure 1-3. Each sentence is split into words (tokens) by splitting on a whitespace.">
+  <figcaption>Figure 1-3. Each sentence is split into words (tokens) by splitting on a whitespace.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/8.png" alt="Figure 1-4. A vocabulary is created by retaining all unique words across both sentences.">
+  <figcaption>Figure 1-4. A vocabulary is created by retaining all unique words across both sentences.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/9.png" alt="Figure 1-5. A bag-of-words is created by counting individual words. These values are referred to as vector representations.">
+  <figcaption>Figure 1-5. A bag-of-words is created by counting individual words. These values are referred to as vector representations.</figcaption>
+</figure>
+
+<blockquote class="book-hint warning">
+<p><strong>Attention : erreur fréquente ici !</strong> Beaucoup d&rsquo;étudiants pensent que le Bag-of-Words est une relique du passé. En réalité, il reste une &ldquo;baseline&rdquo; (référence) solide pour des tâches simples. Mais regardez bien la faille sémantique : les phrases &ldquo;Le chat mange la souris&rdquo; et &ldquo;La souris mange le chat&rdquo; produiront le <em>même</em> vecteur exact dans un modèle BoW standard. Pour la machine, le prédateur et la proie sont statistiquement identiques. On perd la structure, donc on perd le sens.</p>
+</blockquote>
+<h2 id="de-tf-idf-aux-limites-de-la-représentation-creuse-sparse">De TF-IDF aux limites de la représentation creuse (Sparse)<a class="anchor" href="#de-tf-idf-aux-limites-de-la-repr%c3%a9sentation-creuse-sparse">#</a></h2>
+<p>Pour affiner le comptage, les chercheurs ont introduit le <strong>TF-IDF</strong> (Term Frequency-Inverse Document Frequency). L&rsquo;intuition est brillante : un mot qui apparaît partout (comme &ldquo;le&rdquo;, &ldquo;et&rdquo;, &ldquo;est&rdquo;) n&rsquo;apporte aucune information sur le sujet d&rsquo;un texte. TF-IDF punit les mots trop fréquents et valorise les mots rares et spécifiques (comme &ldquo;photosynthèse&rdquo; ou &ldquo;algorithme&rdquo;).</p>
+<p>Cependant, nous restions prisonniers des <strong>représentations creuses (sparse)</strong>. 🔑 <strong>Notez bien cette distinction :</strong> dans une représentation creuse, la taille du vecteur est égale à la taille du dictionnaire. Si votre modèle connaît 100 000 mots, chaque petit SMS de 3 mots devient un vecteur de 100 000 dimensions rempli de 99 997 zéros. C&rsquo;est un gaspillage immense de puissance de calcul, et surtout, cela ne permet pas de comprendre que &ldquo;maison&rdquo; et &ldquo;demeure&rdquo; sont des synonymes, car ce sont deux colonnes totalement distinctes dans la base de données.</p>
+<h2 id="la-révolution-de-2013--les-embeddings-denses-word2vec">La révolution de 2013 : Les Embeddings Denses (Word2Vec)<a class="anchor" href="#la-r%c3%a9volution-de-2013--les-embeddings-denses-word2vec">#</a></h2>
+<p>C&rsquo;est ici que l&rsquo;histoire s&rsquo;accélère brutalement. Avec l&rsquo;arrivée de <strong>Word2Vec</strong> (Mikolov et al., 2013), nous sommes passés de la statistique de comptage à la géométrie neuronale.</p>
+<p><strong>L&rsquo;intuition fondamentale</strong> : &ldquo;Vous connaîtrez un mot par l&rsquo;entreprise qu&rsquo;il garde&rdquo; (John Rupert Firth, 1957). Au lieu de compter les mots, nous allons entraîner un petit réseau de neurones à prédire un mot en fonction de ses voisins (ou inversement).</p>
+<p>Le résultat est l&rsquo;apparition des <strong>embeddings denses</strong>. Au lieu d&rsquo;un vecteur géant de zéros, chaque mot est représenté par un vecteur compact (généralement 300 ou 768 dimensions) de nombres réels. Comme l&rsquo;illustrent les <strong>Figures 1-6 à 1-9</strong>, on découvre alors une véritable géométrie du langage. Dans cet espace vectoriel, les mots qui partagent un sens similaire se retrouvent physiquement proches les uns des autres. Plus incroyable encore, ces vecteurs permettent des opérations mathématiques sur les concepts :
+<code>Vecteur(Roi) - Vecteur(Homme) + Vecteur(Femme) ≈ Vecteur(Reine)</code></p>
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/10.png" alt="Figure 1-6. A neural network consists of interconnected layers of nodes where each connection is a linear equation.">
+  <figcaption>Figure 1-6. A neural network consists of interconnected layers of nodes where each connection is a linear equation.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/11.png" alt="Figure 1-7. A neural network is trained to predict if two words are neighbors. During this process, the embeddings are updated to be in line with the ground truth.">
+  <figcaption>Figure 1-7. A neural network is trained to predict if two words are neighbors. During this process, the embeddings are updated to be in line with the ground truth.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/12.png" alt="Figure 1-8. The values of embeddings represent properties that are used to represent words. We may oversimplify by imagining that dimensions represent concepts (which they don’t), but it helps express the idea.">
+  <figcaption>Figure 1-8. The values of embeddings represent properties that are used to represent words. We may oversimplify by imagining that dimensions represent concepts (which they don’t), but it helps express the idea.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/13.png" alt="Figure 1-9. Embeddings of words that are similar will be close to each other in dimen‐ sional space.">
+  <figcaption>Figure 1-9. Embeddings of words that are similar will be close to each other in dimen‐ sional space.</figcaption>
+</figure>
+
+<blockquote class="book-hint info">
+<p>🔑 <strong>La distinction non-négociable :</strong> Ces embeddings sont dits <strong>statiques</strong>. Cela signifie que dans le modèle, le mot &ldquo;avocat&rdquo; n&rsquo;a qu&rsquo;une seule &ldquo;adresse&rdquo; (un seul vecteur), qu&rsquo;il s&rsquo;agisse du fruit ou de la profession juridique.</p>
+</blockquote>
+<h2 id="le-mur-de-la-polysémie--lexemple-bank">Le mur de la polysémie : L&rsquo;exemple &ldquo;bank&rdquo;<a class="anchor" href="#le-mur-de-la-polys%c3%a9mie--lexemple-bank">#</a></h2>
+<p>C&rsquo;est ici que nous touchons aux limites des modèles pré-2018. Prenons l&rsquo;exemple du mot anglais &ldquo;bank&rdquo;, très cher aux chercheurs en NLP.</p>
+<ol>
+<li>&ldquo;I am going to the <strong>bank</strong> to withdraw money.&rdquo; (Institution financière)</li>
+<li>&ldquo;The boat is near the river <strong>bank</strong>.&rdquo; (Rive d&rsquo;un cours d&rsquo;eau)</li>
+</ol>
+<p>Dans les approches de Word2Vec ou GloVe, le mot &ldquo;bank&rdquo; n&rsquo;a qu&rsquo;un seul vecteur. Ce vecteur est une sorte de &ldquo;moyenne&rdquo; confuse entre la finance et la géographie. 🔑 <strong>Je dois insister :</strong> c&rsquo;est la limite ultime des représentations non contextuelles. La machine ne peut pas changer sa vision d&rsquo;un mot en fonction de ce qui l&rsquo;entoure. Il nous manquait une technologie capable de générer des embeddings <em>dynamiques</em>, capables de se transformer selon la phrase. C&rsquo;est ce défi qui a pavé la voie aux Transformers que nous étudierons en section 1.3.</p>
+<h2 id="tableau-comparatif--approches-symboliques-vs-neuronales">Tableau comparatif : Approches Symboliques vs Neuronales<a class="anchor" href="#tableau-comparatif--approches-symboliques-vs-neuronales">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Dimension</th>
+          <th style="text-align: left">Approches Symboliques/Statistiques (BoW, TF-IDF)</th>
+          <th style="text-align: left">Approches Neuronales (Word2Vec, GloVe)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Philosophie</strong></td>
+          <td style="text-align: left">Compter les mots (Fréquence brute)</td>
+          <td style="text-align: left">Apprendre les relations (Voisinage sémantique)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Type de vecteur</strong></td>
+          <td style="text-align: left"><strong>Creux (Sparse)</strong> : immense taille, plein de zéros</td>
+          <td style="text-align: left"><strong>Dense</strong> : taille compacte, nombres réels partout</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Sens sémantique</strong></td>
+          <td style="text-align: left">Nul (chaque mot est un îlot isolé)</td>
+          <td style="text-align: left">Élevé (Similarité calculable par distance)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Indépendance</strong></td>
+          <td style="text-align: left">Ne comprend pas que &ldquo;chien&rdquo; et &ldquo;chiot&rdquo; sont liés</td>
+          <td style="text-align: left">Regroupe les synonymes dans l&rsquo;espace vectoriel</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Ambiguïté</strong></td>
+          <td style="text-align: left">Échec total sur les synonymes</td>
+          <td style="text-align: left">Gère les synonymes, échoue sur la polysémie</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="éthique-et-responsabilité--les-biais-dans-les-vecteurs">Éthique et Responsabilité : Les biais dans les vecteurs<a class="anchor" href="#%c3%a9thique-et-responsabilit%c3%a9--les-biais-dans-les-vecteurs">#</a></h2>
+<blockquote class="book-hint danger">
+<p>Avant de clore cette section, je veux que vous compreniez une chose fondamentale. Les vecteurs neuronaux ne sont pas des entités &ldquo;pures&rdquo; ou &ldquo;logiques&rdquo;. Ils sont le reflet des données sur lesquelles ils sont entraînés.</p>
+<p>Si vous entraînez un modèle sur des textes du web qui contiennent des préjugés sexistes ou racistes, ces préjugés vont se traduire par des distances géométriques dans l&rsquo;espace vectoriel. Par exemple, des études célèbres ont montré que dans certains modèles Word2Vec, le vecteur &ldquo;homme&rdquo; était statistiquement plus proche de &ldquo;programmeur&rdquo; et le vecteur &ldquo;femme&rdquo; de &ldquo;homemaker&rdquo; (femme au foyer). 🔑 <strong>C&rsquo;est une leçon d&rsquo;éthique cruciale :</strong> en tant que futurs concepteurs de LLM, vous devez être conscients que la beauté mathématique d&rsquo;un vecteur dense peut cacher des biais sociétaux profonds. La science des modèles de langage commence par une analyse critique de la donnée.</p>
+</blockquote>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/docs/ch1-fondements/week01/introduction/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Introduction</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/docs/ch1-fondements/week01/section-1-2/" class="flex align-center">
+        <span>1.2 Limites des architectures séquentielles : RNN et LSTM</span>
+        <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#laube-du-language-ai--lillusion-des-règles-et-la-réalité-statistique">L&rsquo;aube du Language AI : L&rsquo;illusion des règles et la réalité statistique</a></li>
+    <li><a href="#le-mécanisme-de-la-sacoche-de-mots-bag-of-words">Le mécanisme de la &ldquo;Sacoche de mots&rdquo; (Bag-of-Words)</a></li>
+    <li><a href="#de-tf-idf-aux-limites-de-la-représentation-creuse-sparse">De TF-IDF aux limites de la représentation creuse (Sparse)</a></li>
+    <li><a href="#la-révolution-de-2013--les-embeddings-denses-word2vec">La révolution de 2013 : Les Embeddings Denses (Word2Vec)</a></li>
+    <li><a href="#le-mur-de-la-polysémie--lexemple-bank">Le mur de la polysémie : L&rsquo;exemple &ldquo;bank&rdquo;</a></li>
+    <li><a href="#tableau-comparatif--approches-symboliques-vs-neuronales">Tableau comparatif : Approches Symboliques vs Neuronales</a></li>
+    <li><a href="#éthique-et-responsabilité--les-biais-dans-les-vecteurs">Éthique et Responsabilité : Les biais dans les vecteurs</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

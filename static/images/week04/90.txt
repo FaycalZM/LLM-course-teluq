@@ -1,1 +1,1 @@
-Figure 4-4. Perform classification directly with a task-specific model or indirectly with general-purpose embeddings.
+Figure 4-5. Perform classification directly with a task-specific model or indirectly with general-purpose embeddings.

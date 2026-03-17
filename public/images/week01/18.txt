@@ -1,1 +1,1 @@
-Figure 1-14. Attention allows a model to “attend” to certain parts of sequences that might relate more or less to one another.
+Figure 1-13. Attention allows a model to “attend” to certain parts of sequences that might relate more or less to one another.

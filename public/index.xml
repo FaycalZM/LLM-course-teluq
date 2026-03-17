@@ -7,5 +7,54 @@
     <generator>Hugo</generator>
     <language>fr</language>
     <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction</title>
+      <link>//localhost:1313/docs/ch1-fondements/week01/introduction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/docs/ch1-fondements/week01/introduction/</guid>
+      <description>&lt;p&gt;Bonjour à toutes et à tous ! Je suis ravie de commencer cette aventure avec vous. Respirez profondément, car nous allons aujourd&amp;rsquo;hui remonter le temps pour comprendre comment nous avons appris aux machines non seulement à lire, mais à saisir les nuances les plus subtiles de notre langage. Ce n&amp;rsquo;est pas qu&amp;rsquo;une question de code, c&amp;rsquo;est une quête pour capturer le sens lui-même ! Imaginez un instant : nous passons de machines qui &amp;ldquo;comptent&amp;rdquo; les mots à des entités qui en saisissent l&amp;rsquo;âme et le contexte.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>1.1 Évolution du Traitement du Langage Naturel (NLP)</title>
+      <link>//localhost:1313/docs/ch1-fondements/week01/section-1-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/docs/ch1-fondements/week01/section-1-1/</guid>
+      <description>&lt;h2 id=&#34;laube-du-language-ai--lillusion-des-règles-et-la-réalité-statistique&#34;&gt;L&amp;rsquo;aube du Language AI : L&amp;rsquo;illusion des règles et la réalité statistique&lt;a class=&#34;anchor&#34; href=&#34;#laube-du-language-ai--lillusion-des-r%c3%a8gles-et-la-r%c3%a9alit%c3%a9-statistique&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xD;&#xA;&lt;p&gt;Pour comprendre pourquoi les modèles que nous utilisons aujourd&amp;rsquo;hui (comme GPT-4 ou Claude) sont si performants, il faut d&amp;rsquo;abord réaliser que pendant quarante ans, nous avons traité le langage comme un simple puzzle de symboles rigides.&lt;/p&gt;&#xA;&lt;p&gt;Comme vous pouvez l&amp;rsquo;observer sur la &lt;strong&gt;Figure 1-1 : Timeline historique du NLP&lt;/strong&gt;, tout commence par des approches basées sur des règles manuelles. Dans les années 1950 et 1960, on pensait qu&amp;rsquo;il suffisait de coder toutes les règles de grammaire et tous les mots d&amp;rsquo;un dictionnaire pour qu&amp;rsquo;une machine &amp;ldquo;comprenne&amp;rdquo;. 🔑 &lt;strong&gt;Je dois insister :&lt;/strong&gt; cette approche symbolique était condamnée. Pourquoi ? Parce que le langage humain n&amp;rsquo;est pas un code informatique stable. Il est vivant, pétri d&amp;rsquo;ambiguïtés, d&amp;rsquo;ironie et de contextes culturels changeants. Essayer de coder le langage avec des instructions &lt;code&gt;if/then&lt;/code&gt; (si/alors), c&amp;rsquo;est comme essayer de vider l&amp;rsquo;océan avec une petite cuillère.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>1.2 Limites des architectures séquentielles : RNN et LSTM</title>
+      <link>//localhost:1313/docs/ch1-fondements/week01/section-1-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/docs/ch1-fondements/week01/section-1-2/</guid>
+      <description>&lt;h2 id=&#34;le-règne-de-la-récurrence--traiter-le-langage-comme-un-flux&#34;&gt;Le règne de la récurrence : Traiter le langage comme un flux&lt;a class=&#34;anchor&#34; href=&#34;#le-r%c3%a8gne-de-la-r%c3%a9currence--traiter-le-langage-comme-un-flux&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xD;&#xA;&lt;p&gt;Maintenant que nous avons appris à transformer les mots en vecteurs d&amp;rsquo;adresses dans notre section précédente, une question brûlante se pose : comment faire pour que la machine comprenne une phrase entière ? Pour nous, humains, lire est un processus séquentiel. Nous lisons de gauche à droite, et chaque mot que nous rencontrons modifie notre compréhension globale de l&amp;rsquo;histoire.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>1.3 Le paradigme de l&#39;attention</title>
+      <link>//localhost:1313/docs/ch1-fondements/week01/section-1-3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/docs/ch1-fondements/week01/section-1-3/</guid>
+      <description>&lt;h2 id=&#34;la-fin-de-lamnésie-séquentielle--le-saut-quantique-de-lia&#34;&gt;La fin de l&amp;rsquo;amnésie séquentielle : Le saut quantique de l&amp;rsquo;IA&lt;a class=&#34;anchor&#34; href=&#34;#la-fin-de-lamn%c3%a9sie-s%c3%a9quentielle--le-saut-quantique-de-lia&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xD;&#xA;&lt;p&gt;Nous arrivons maintenant au moment le plus électrisant de notre récit ! Imaginez que vous deviez traduire un paragraphe complexe. Jusqu&amp;rsquo;ici, avec les RNN que nous avons vus en section 1.2, je vous forçais à lire chaque mot, à le garder en mémoire, puis à tout oublier pour passer au suivant, en espérant que votre cerveau tienne le coup jusqu&amp;rsquo;au point final. C&amp;rsquo;est épuisant, n&amp;rsquo;est-ce pas ?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>1.4 Définition et applications des LLM</title>
+      <link>//localhost:1313/docs/ch1-fondements/week01/section-1-4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/docs/ch1-fondements/week01/section-1-4/</guid>
+      <description>&lt;h2 id=&#34;une-définition-mouvante--quest-ce-quun-large-language-model-&#34;&gt;Une définition mouvante : Qu&amp;rsquo;est-ce qu&amp;rsquo;un &amp;ldquo;Large&amp;rdquo; Language Model ?&lt;a class=&#34;anchor&#34; href=&#34;#une-d%c3%a9finition-mouvante--quest-ce-quun-large-language-model-&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xD;&#xA;&lt;p&gt;Nous y sommes ! Après avoir exploré les briques et le moteur, regardons enfin l&amp;rsquo;édifice dans son ensemble. Mais attention, le terme &amp;ldquo;Large Language Model&amp;rdquo; (LLM) est un peu comme un horizon qui recule à mesure que l&amp;rsquo;on avance.&lt;/p&gt;&#xA;&lt;p&gt;Comme l&amp;rsquo;expliquent Jay Alammar et Maarten Grootendorst, la définition de ce qui est &amp;ldquo;large&amp;rdquo; a radicalement changé en quelques années seulement. En 2018, un modèle comme BERT (110 à 340 millions de paramètres) était considéré comme géant. Aujourd&amp;rsquo;hui, avec des modèles comme GPT-4 qui dépasseraient les mille milliards de paramètres, nos anciens géants ressemblent à des nains. 🔑 &lt;strong&gt;Je dois insister :&lt;/strong&gt; Le mot &amp;ldquo;Large&amp;rdquo; ne fait pas seulement référence au nombre de paramètres (les &amp;ldquo;boutons&amp;rdquo; que le modèle ajuste pendant l&amp;rsquo;apprentissage), mais aussi à l&amp;rsquo;immensité des données ingérées : presque tout le texte produit par l&amp;rsquo;humanité et numérisé sur le web.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Laboratoire</title>
+      <link>//localhost:1313/docs/ch1-fondements/week01/lab/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/docs/ch1-fondements/week01/lab/</guid>
+      <description>&lt;p&gt;Félicitations ! Vous avez traversé la jungle de l&amp;rsquo;histoire du NLP. Maintenant, il est temps de mettre les mains dans le cambouis (ou plutôt dans les tokens !). Ce premier laboratoire est conçu pour ancrer vos intuitions. Ne cherchez pas la perfection immédiate, cherchez à comprendre le &amp;ldquo;pourquoi&amp;rdquo; derrière le code. Prêt·e·s ? C&amp;rsquo;est parti !&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-exercice-1--tokenisation-manuelle-niveau-basique---intuition-bpe&#34;&gt;🔹 EXERCICE 1 : Tokenisation manuelle (Niveau basique - Intuition BPE)&lt;a class=&#34;anchor&#34; href=&#34;#-exercice-1--tokenisation-manuelle-niveau-basique---intuition-bpe&#34;&gt;#&lt;/a&gt;&lt;/h2&gt;&#xD;&#xA;&lt;p&gt;&lt;strong&gt;Objectif&lt;/strong&gt; : Comprendre comment un algorithme comme le Byte Pair Encoding (BPE) crée des jetons (tokens) à partir de caractères fréquents.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Quiz</title>
+      <link>//localhost:1313/docs/ch1-fondements/week01/quiz/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/docs/ch1-fondements/week01/quiz/</guid>
+      <description>&lt;iframe&#xA;  src=&#34;//localhost:1313/apps/quiz-week01.html&#34;&#xA;  width=&#34;100%&#34;&#xA;  height=&#34;700&#34;&#xA;  frameborder=&#34;0&#34;&#xA;  allowfullscreen&#xA;  style=&#34;border: 1px solid var(--gray-200, #e5e7eb); border-radius: 8px;&#34;&#xA;&gt;&lt;/iframe&gt;</description>
+    </item>
   </channel>
 </rss>

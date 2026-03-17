@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Le règne de la récurrence : Traiter le langage comme un flux#Maintenant que nous avons appris à transformer les mots en vecteurs d’adresses dans notre section précédente, une question brûlante se pose : comment faire pour que la machine comprenne une phrase entière ? Pour nous, humains, lire est un processus séquentiel. Nous lisons de gauche à droite, et chaque mot que nous rencontrons modifie notre compréhension globale de l’histoire.
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2e3440">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="//localhost:1313/docs/ch1-fondements/week01/section-1-2/">
+  <meta property="og:site_name" content="LLM Course">
+  <meta property="og:title" content="1.2 Limites des architectures séquentielles : RNN et LSTM">
+  <meta property="og:description" content="Le règne de la récurrence : Traiter le langage comme un flux#Maintenant que nous avons appris à transformer les mots en vecteurs d’adresses dans notre section précédente, une question brûlante se pose : comment faire pour que la machine comprenne une phrase entière ? Pour nous, humains, lire est un processus séquentiel. Nous lisons de gauche à droite, et chaque mot que nous rencontrons modifie notre compréhension globale de l’histoire.">
+  <meta property="og:locale" content="fr">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+
+
+  <meta itemprop="name" content="1.2 Limites des architectures séquentielles : RNN et LSTM">
+  <meta itemprop="description" content="Le règne de la récurrence : Traiter le langage comme un flux#Maintenant que nous avons appris à transformer les mots en vecteurs d’adresses dans notre section précédente, une question brûlante se pose : comment faire pour que la machine comprenne une phrase entière ? Pour nous, humains, lire est un processus séquentiel. Nous lisons de gauche à droite, et chaque mot que nous rencontrons modifie notre compréhension globale de l’histoire.">
+  <meta itemprop="wordCount" content="1069">
+
+<title>1.2 Limites des architectures séquentielles : RNN et LSTM | LLM Course</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="//localhost:1313/docs/ch1-fondements/week01/section-1-2/">
+<link rel="stylesheet" href="/book.min.cc2c524ed250aac81b23d1f4af87344917b325208841feca0968fe450f570575.css" integrity="sha256-zCxSTtJQqsgbI9H0r4c0SRezJSCIQf7KCWj&#43;RQ9XBXU=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/fr.search.min.44bea90aca060020062f6550c34beed0b0db07b937c67165a74b019ab894896f.js" integrity="sha256-RL6pCsoGACAGL2VQw0vu0LDbB7k3xnFlp0sBmriUiW8=" crossorigin="anonymous"></script>
+
+
+
+  <link rel="stylesheet" href="/css/colab.css">
+
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/livre.jpg" alt="Logo" /><span>LLM Course</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Rechercher"
+    aria-label="Rechercher"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d5ffa984d1889a21a05a9c923fa19a92" class="toggle" checked />
+    <label for="section-d5ffa984d1889a21a05a9c923fa19a92" class="flex">
+      <a role="button" class="">
+        Fondements des LLM</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/" class="">
+      Semaine 1 : Introduction aux LLM et historique du NLP</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/introduction/" class="">
+      Introduction</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-1/" class="">
+      1.1 Évolution du Traitement du Langage Naturel (NLP)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-2/" class="active">
+      1.2 Limites des architectures séquentielles : RNN et LSTM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-3/" class="">
+      1.3 Le paradigme de l&#39;attention</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-4/" class="">
+      1.4 Définition et applications des LLM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/lab/" class="">
+      Laboratoire</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/quiz/" class="">
+      Quiz</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 2</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 3</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 4</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 5</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-19671ec13f699b82235aadad56e3d8e2" class="toggle"  />
+    <label for="section-19671ec13f699b82235aadad56e3d8e2" class="flex">
+      <a role="button" class="">
+        Science des LLM</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 6</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 7</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 8</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 9</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 10</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-26878fd51edb23a5742cc9bff6d7b89d" class="toggle"  />
+    <label for="section-26878fd51edb23a5742cc9bff6d7b89d" class="flex">
+      <a role="button" class="">
+        Ingénierie des LLM</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 11</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 12</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 13</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 14</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>1.2 Limites des architectures séquentielles : RNN et LSTM</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#le-règne-de-la-récurrence--traiter-le-langage-comme-un-flux">Le règne de la récurrence : Traiter le langage comme un flux</a></li>
+    <li><a href="#le-problème-de-la-disparition-du-gradient-vanishing-gradient">Le problème de la disparition du gradient (Vanishing Gradient)</a></li>
+    <li><a href="#larchitecture-encodeur-décodeur-et-le-goulot-détranglement">L&rsquo;architecture Encodeur-Décodeur et le goulot d&rsquo;étranglement</a></li>
+    <li><a href="#le-processus-autorégressif--un-token-après-lautre">Le processus Autorégressif : Un token après l&rsquo;autre</a></li>
+    <li><a href="#lévolution-vers-les-lstm-long-short-term-memory">L&rsquo;évolution vers les LSTM (Long Short-Term Memory)</a></li>
+    <li><a href="#implémentation--un-rnn-simple-en-pytorch">Implémentation : Un RNN simple en PyTorch</a></li>
+    <li><a href="#synthèse-des-faiblesses">Synthèse des faiblesses</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="le-règne-de-la-récurrence--traiter-le-langage-comme-un-flux">Le règne de la récurrence : Traiter le langage comme un flux<a class="anchor" href="#le-r%c3%a8gne-de-la-r%c3%a9currence--traiter-le-langage-comme-un-flux">#</a></h2>
+<p>Maintenant que nous avons appris à transformer les mots en vecteurs d&rsquo;adresses dans notre section précédente, une question brûlante se pose : comment faire pour que la machine comprenne une phrase entière ? Pour nous, humains, lire est un processus séquentiel. Nous lisons de gauche à droite, et chaque mot que nous rencontrons modifie notre compréhension globale de l&rsquo;histoire.</p>
+<p>Pendant des années, la réponse technologique à ce processus a été le <strong>Réseau de Neurones Récurrent (RNN)</strong>. L&rsquo;idée est élégante : le modèle possède une &ldquo;mémoire interne&rdquo; (appelée état caché ou <em>hidden state</em>). À chaque étape, il prend un mot (un embedding) et le mélange avec sa mémoire de ce qu&rsquo;il a lu précédemment. 🔑 <strong>Notez bien cette intuition :</strong> le RNN essaie de condenser tout le passé dans un seul petit vecteur qui évolue à chaque nouveau mot.</p>
+<h2 id="le-problème-de-la-disparition-du-gradient-vanishing-gradient">Le problème de la disparition du gradient (Vanishing Gradient)<a class="anchor" href="#le-probl%c3%a8me-de-la-disparition-du-gradient-vanishing-gradient">#</a></h2>
+<p>C&rsquo;est ici que les choses se compliquent.</p>
+<blockquote class="book-hint warning">
+<p><strong>Attention : erreur fréquente ici !</strong> On imagine souvent que les RNN ont une mémoire infinie. C&rsquo;est faux. En pratique, à cause de la structure mathématique de la rétropropagation (l&rsquo;algorithme qui permet au modèle d&rsquo;apprendre), l&rsquo;information s&rsquo;estompe très vite.</p>
+</blockquote>
+<p><strong>L&rsquo;analogie du &ldquo;Téléphone Arabe&rdquo; (ou Chinese Whispers)</strong> : Imaginez une file de 50 personnes. Vous murmurez une phrase complexe à la première. À la 50ème personne, il est fort probable que le message original soit devenu méconnaissable ou ait totalement disparu. C&rsquo;est le <strong>Vanishing Gradient</strong> (disparition du gradient). Le modèle n&rsquo;arrive plus à faire le lien entre un mot situé au début d&rsquo;un long paragraphe et un mot situé à la fin. Pour un modèle de langage, cela signifie qu&rsquo;il oublie le sujet de la phrase avant d&rsquo;avoir atteint le verbe !</p>
+<h2 id="larchitecture-encodeur-décodeur-et-le-goulot-détranglement">L&rsquo;architecture Encodeur-Décodeur et le goulot d&rsquo;étranglement<a class="anchor" href="#larchitecture-encodeur-d%c3%a9codeur-et-le-goulot-d%c3%a9tranglement">#</a></h2>
+<p>Pour des tâches comme la traduction, nous avons utilisé des structures plus complexes. Regardez attentivement la <strong>Figure 1-10 : Architecture RNN encoder-decoder</strong>. Le système se divise en deux :</p>
+<ol>
+<li><strong>L&rsquo;Encodeur</strong> : Il lit la phrase source (ex: &ldquo;I love llamas&rdquo;) et tente de transformer tout son sens en un seul et unique vecteur final : le <strong>Context Embedding</strong>.</li>
+<li><strong>Le Décodeur</strong> : Il prend ce vecteur et essaie de &ldquo;déplier&rdquo; la phrase dans une autre langue.</li>
+</ol>
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/15.png" alt="Figure 1-10. Two recurrent neural networks (decoder and encoder) translating an input sequence from English to Dutch.">
+  <figcaption>Figure 1-10. Two recurrent neural networks (decoder and encoder) translating an input sequence from English to Dutch.</figcaption>
+</figure>
+
+<blockquote class="book-hint danger">
+<p>🔑 <strong>Je dois insister sur cette faille critique :</strong> On appelle cela le <strong>goulot d&rsquo;étranglement (bottleneck)</strong>. Imaginez que vous deviez résumer tout le sens d&rsquo;un roman de 500 pages en une seule petite carte postale, puis qu&rsquo;une autre personne doive réécrire le roman à partir de cette carte postale. C&rsquo;est impossible sans perdre une quantité massive de détails. Plus la phrase est longue, plus le &ldquo;Context Embedding&rdquo; devient une bouillie statistique saturée.</p>
+</blockquote>
+<h2 id="le-processus-autorégressif--un-token-après-lautre">Le processus Autorégressif : Un token après l&rsquo;autre<a class="anchor" href="#le-processus-autor%c3%a9gressif--un-token-apr%c3%a8s-lautre">#</a></h2>
+<p>Une fois que le décodeur a reçu ce vecteur de contexte, il commence la génération. Comme vous pouvez le voir sur la <strong>Figure 1-11 : Processus autoregressive</strong>, la génération n&rsquo;est pas instantanée. Le modèle prédit le premier mot, puis utilise ce premier mot comme entrée pour prédire le second, et ainsi de suite.</p>
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/16.png" alt="Figure 1-11. Each previous output token is used as input to generate the next token.">
+  <figcaption>Figure 1-11. Each previous output token is used as input to generate the next token.</figcaption>
+</figure>
+
+<p>C&rsquo;est ce qu&rsquo;on appelle la nature <strong>autorégressive</strong> des modèles de langage. 🔑 <strong>C&rsquo;est un concept non-négociable :</strong> presque tous les LLM actuels, y compris les plus puissants, fonctionnent encore sur ce principe de &ldquo;boucle&rdquo; où la sortie de l&rsquo;étape <em>t</em> devient l&rsquo;entrée de l&rsquo;étape <em>t+1</em>. Le problème des RNN est que cette boucle est strictement séquentielle, ce qui rend l&rsquo;entraînement désespérément lent car on ne peut pas traiter tous les mots en même temps.</p>
+<h2 id="lévolution-vers-les-lstm-long-short-term-memory">L&rsquo;évolution vers les LSTM (Long Short-Term Memory)<a class="anchor" href="#l%c3%a9volution-vers-les-lstm-long-short-term-memory">#</a></h2>
+<p>Pour tenter de sauver les RNN, les chercheurs ont inventé les <strong>LSTM</strong>. Imaginez que dans chaque neurone, nous ajoutions des &ldquo;portes&rdquo; (gates) :</p>
+<ul>
+<li>Une porte d&rsquo;oubli (<em>forget gate</em>) pour décider ce qui n&rsquo;est plus utile.</li>
+<li>Une porte d&rsquo;entrée (<em>input gate</em>) pour décider quelle nouvelle information stocker.</li>
+<li>Une porte de sortie (<em>output gate</em>) pour filtrer ce qu&rsquo;on transmet.</li>
+</ul>
+<p>Bien que les LSTM aient permis de traiter des séquences plus longues (voir l&rsquo;exemple de traduction &ldquo;I love llamas&rdquo; → &ldquo;Ik hou van lama&rsquo;s&rdquo; dans la <strong>Figure 1-12</strong>), ils n&rsquo;ont pas résolu le goulot d&rsquo;étranglement fondamental. Ils ont simplement rendu la carte postale un peu plus lisible, mais elle reste une carte postale limitée.</p>
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/17.png" alt="Figure 1-12. Using word2vec embeddings, a context embedding is generated that repre‐ sents the entire sequence.">
+  <figcaption>Figure 1-12. Using word2vec embeddings, a context embedding is generated that repre‐ sents the entire sequence.</figcaption>
+</figure>
+
+<h2 id="implémentation--un-rnn-simple-en-pytorch">Implémentation : Un RNN simple en PyTorch<a class="anchor" href="#impl%c3%a9mentation--un-rnn-simple-en-pytorch">#</a></h2>
+<p>Pour bien saisir la lourdeur de cette approche, jetons un œil à la structure d&rsquo;un RNN. Notez bien comment chaque état caché dépend de l&rsquo;état précédent.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cf222e">import</span> <span style="color:#24292e">torch</span>
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">import</span> <span style="color:#24292e">torch.nn</span> <span style="color:#cf222e">as</span> <span style="color:#24292e">nn</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># Structure d&#39;un RNN pour traiter des séquences</span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># Testé pour Colab T4</span>
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">class</span> <span style="color:#1f2328">SimpleRNN</span><span style="color:#1f2328">(</span>nn<span style="color:#0550ae">.</span>Module<span style="color:#1f2328">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">def</span> <span style="color:#6639ba">__init__</span><span style="color:#1f2328">(</span><span style="color:#6a737d">self</span><span style="color:#1f2328">,</span> vocab_size<span style="color:#1f2328">,</span> embedding_dim<span style="color:#1f2328">,</span> hidden_dim<span style="color:#1f2328">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6639ba">super</span><span style="color:#1f2328">(</span>SimpleRNN<span style="color:#1f2328">,</span> <span style="color:#6a737d">self</span><span style="color:#1f2328">)</span><span style="color:#0550ae">.</span><span style="color:#6639ba">__init__</span><span style="color:#1f2328">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57606a"># 1. Couche d&#39;embeddings (vue en 1.1)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>embedding <span style="color:#0550ae">=</span> nn<span style="color:#0550ae">.</span>Embedding<span style="color:#1f2328">(</span>vocab_size<span style="color:#1f2328">,</span> embedding_dim<span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#57606a"># 2. La cellule RNN (La &#34;mémoire&#34; séquentielle)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>rnn <span style="color:#0550ae">=</span> nn<span style="color:#0550ae">.</span>RNN<span style="color:#1f2328">(</span>embedding_dim<span style="color:#1f2328">,</span> hidden_dim<span style="color:#1f2328">,</span> batch_first<span style="color:#0550ae">=</span><span style="color:#cf222e">True</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#57606a"># 3. La tête de classification ou de prédiction</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>fc <span style="color:#0550ae">=</span> nn<span style="color:#0550ae">.</span>Linear<span style="color:#1f2328">(</span>hidden_dim<span style="color:#1f2328">,</span> vocab_size<span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">def</span> <span style="color:#6639ba">forward</span><span style="color:#1f2328">(</span><span style="color:#6a737d">self</span><span style="color:#1f2328">,</span> text<span style="color:#1f2328">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57606a"># text: [batch_size, seq_length]</span>
+</span></span><span style="display:flex;"><span>        embedded <span style="color:#0550ae">=</span> <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>embedding<span style="color:#1f2328">(</span>text<span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#57606a"># Le RNN renvoie l&#39;output de chaque étape et le dernier état caché</span>
+</span></span><span style="display:flex;"><span>        output<span style="color:#1f2328">,</span> hidden <span style="color:#0550ae">=</span> <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>rnn<span style="color:#1f2328">(</span>embedded<span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#57606a"># On utilise le dernier état caché (le fameux &#34;context embedding&#34;)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57606a"># pour prédire le mot suivant ou la classe</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cf222e">return</span> <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>fc<span style="color:#1f2328">(</span>hidden<span style="color:#0550ae">.</span>squeeze<span style="color:#1f2328">(</span><span style="color:#0550ae">0</span><span style="color:#1f2328">))</span></span></span></code></pre></div><!-- TODO: add colab link -->
+<h2 id="synthèse-des-faiblesses">Synthèse des faiblesses<a class="anchor" href="#synth%c3%a8se-des-faiblesses">#</a></h2>
+<p>Si je devais résumer pourquoi nous avons dû abandonner les RNN au profit de ce que vous utilisez aujourd&rsquo;hui, je retiendrai trois points critiques :</p>
+<ol>
+<li><strong>L&rsquo;oubli des débuts</strong> : Même avec les LSTM, le modèle finit par perdre le contexte lointain (Disparition du gradient).</li>
+<li><strong>L&rsquo;impossibilité de paralléliser</strong> : Comme le mot 3 a besoin de l&rsquo;état du mot 2, qui a besoin du mot 1, on ne peut pas utiliser la pleine puissance des cartes graphiques (GPU) modernes pour l&rsquo;entraînement. C&rsquo;est un processus linéaire dans un monde de calcul parallèle.</li>
+<li><strong>Le Goulot de Contexte</strong> : Essayer de compresser toute une phrase dans un seul vecteur est une stratégie perdante pour la complexité du langage humain.</li>
+</ol>
+<blockquote class="book-hint info">
+<p>C&rsquo;est dans cette impasse technologique qu&rsquo;est née une idée folle : et si on arrêtait de forcer la machine à lire de gauche à droite ? Et si on lui donnait un mécanisme pour &ldquo;regarder&rdquo; n&rsquo;importe quelle partie de la phrase instantanément ? C&rsquo;est le saut quantique vers l&rsquo;Attention que nous allons découvrir.</p>
+</blockquote>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/docs/ch1-fondements/week01/section-1-1/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>1.1 Évolution du Traitement du Langage Naturel (NLP)</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/docs/ch1-fondements/week01/section-1-3/" class="flex align-center">
+        <span>1.3 Le paradigme de l&#39;attention</span>
+        <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#le-règne-de-la-récurrence--traiter-le-langage-comme-un-flux">Le règne de la récurrence : Traiter le langage comme un flux</a></li>
+    <li><a href="#le-problème-de-la-disparition-du-gradient-vanishing-gradient">Le problème de la disparition du gradient (Vanishing Gradient)</a></li>
+    <li><a href="#larchitecture-encodeur-décodeur-et-le-goulot-détranglement">L&rsquo;architecture Encodeur-Décodeur et le goulot d&rsquo;étranglement</a></li>
+    <li><a href="#le-processus-autorégressif--un-token-après-lautre">Le processus Autorégressif : Un token après l&rsquo;autre</a></li>
+    <li><a href="#lévolution-vers-les-lstm-long-short-term-memory">L&rsquo;évolution vers les LSTM (Long Short-Term Memory)</a></li>
+    <li><a href="#implémentation--un-rnn-simple-en-pytorch">Implémentation : Un RNN simple en PyTorch</a></li>
+    <li><a href="#synthèse-des-faiblesses">Synthèse des faiblesses</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

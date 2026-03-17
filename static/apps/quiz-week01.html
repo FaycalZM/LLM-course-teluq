@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Semaine 1 — Introduction aux LLM</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      padding: 1.5rem;
+      line-height: 1.6;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .question {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      transition: box-shadow 0.2s;
+    }
+    .question:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 0.85rem;
+      font-size: 0.98rem;
+    }
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      margin-bottom: 0.35rem;
+      cursor: pointer;
+      transition: background 0.15s;
+      font-size: 0.93rem;
+    }
+    .option:hover { background: #f1f5f9; }
+    .option input[type="radio"] { margin-top: 0.2rem; accent-color: #6366f1; flex-shrink: 0; }
+    .feedback {
+      margin-top: 0.85rem;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .feedback.correct { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+    .feedback.incorrect { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+    .btn-check {
+      margin-top: 1rem;
+      padding: 0.5rem 1.2rem;
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-check:hover { background: #4f46e5; }
+    .score-box {
+      background: #ede9fe;
+      border: 1px solid #c4b5fd;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      display: none;
+      margin-top: 1rem;
+    }
+    .score-box h2 { font-size: 1.6rem; color: #4c1d95; margin-bottom: 0.25rem; }
+    .score-box p { color: #6d28d9; font-size: 0.95rem; }
+    .btn-reset {
+      margin-top: 1rem;
+      padding: 0.5rem 1.4rem;
+      background: #7c3aed;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-reset:hover { background: #6d28d9; }
+    #submit-all {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      background: #0f172a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: background 0.2s;
+    }
+    #submit-all:hover { background: #1e3a5f; }
+  </style>
+</head>
+<body>
+
+<h1>🧪 Quiz — Semaine 1</h1>
+<p class="subtitle">Introduction aux LLM et historique du NLP · 10 questions</p>
+
+<form id="quiz-form">
+
+  <div class="question" data-correct="c">
+    <div class="question-text">1. Quelle approche NLP représente le texte comme un simple comptage de mots, ignorant totalement leur ordre ?</div>
+    <label class="option"><input type="radio" name="q1" value="a" /> a) Les Réseaux de Neurones Récurrents (RNN)</label>
+    <label class="option"><input type="radio" name="q1" value="b" /> b) Les Transformers</label>
+    <label class="option"><input type="radio" name="q1" value="c" /> c) La Sacoche de mots (Bag-of-Words)</label>
+    <label class="option"><input type="radio" name="q1" value="d" /> d) L'algorithme Word2Vec</label>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question" data-correct="b">
+    <div class="question-text">2. Quel est le principal inconvénient des RNN par rapport aux Transformers lors du traitement de longs textes ?</div>
+    <label class="option"><input type="radio" name="q2" value="a" /> a) Ils sont trop complexes à coder</label>
+    <label class="option"><input type="radio" name="q2" value="b" /> b) Le problème de la disparition du gradient (Vanishing Gradient) qui cause l'oubli du début de la séquence</label>
+    <label class="option"><input type="radio" name="q2" value="c" /> c) Ils nécessitent trop de mémoire GPU</label>
+    <label class="option"><input type="radio" name="q2" value="d" /> d) Ils ne peuvent pas traiter les données numériques</label>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question" data-correct="b">
+    <div class="question-text">3. Dans le mécanisme d'attention, que permet spécifiquement la "self-attention" ?</div>
+    <label class="option"><input type="radio" name="q3" value="a" /> a) Au modèle de s'entraîner sans données</label>
+    <label class="option"><input type="radio" name="q3" value="b" /> b) À chaque mot d'une phrase de regarder les autres mots de cette même phrase pour s'enrichir de leur contexte</label>
+    <label class="option"><input type="radio" name="q3" value="c" /> c) De traduire automatiquement vers n'importe quelle langue</label>
+    <label class="option"><input type="radio" name="q3" value="d" /> d) De réduire la taille du vocabulaire</label>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question" data-correct="b">
+    <div class="question-text">4. Quelle est la différence fondamentale entre BERT et GPT ?</div>
+    <label class="option"><input type="radio" name="q4" value="a" /> a) BERT est plus ancien que GPT</label>
+    <label class="option"><input type="radio" name="q4" value="b" /> b) BERT est conçu pour la représentation (encodeur), tandis que GPT est optimisé pour la génération (décodeur)</label>
+    <label class="option"><input type="radio" name="q4" value="c" /> c) GPT n'utilise pas de mécanismes d'attention</label>
+    <label class="option"><input type="radio" name="q4" value="d" /> d) BERT ne peut pas être utilisé pour la classification</label>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question" data-correct="b">
+    <div class="question-text">5. Quel article scientifique a introduit l'architecture Transformer en 2017 ?</div>
+    <label class="option"><input type="radio" name="q5" value="a" /> a) "Deep Learning for NLP"</label>
+    <label class="option"><input type="radio" name="q5" value="b" /> b) "Attention Is All You Need"</label>
+    <label class="option"><input type="radio" name="q5" value="c" /> c) "The End of RNNs"</label>
+    <label class="option"><input type="radio" name="q5" value="d" /> d) "Generative Pre-trained Transformers"</label>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question" data-correct="b">
+    <div class="question-text">6. Que signifie "autoregressive" dans le contexte des modèles de langage ?</div>
+    <label class="option"><input type="radio" name="q6" value="a" /> a) Le modèle apprend tout seul sans humain</label>
+    <label class="option"><input type="radio" name="q6" value="b" /> b) Le modèle utilise ses propres prédictions précédentes comme entrées pour les étapes suivantes</label>
+    <label class="option"><input type="radio" name="q6" value="c" /> c) Le modèle est capable de se réparer en cas d'erreur de code</label>
+    <label class="option"><input type="radio" name="q6" value="d" /> d) Le modèle ne fonctionne que sur les textes de voitures</label>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question" data-correct="b">
+    <div class="question-text">7. Quel est l'avantage principal de l'attention par rapport aux architectures RNN pour l'entraînement ?</div>
+    <label class="option"><input type="radio" name="q7" value="a" /> a) Elle ne nécessite pas de mathématiques</label>
+    <label class="option"><input type="radio" name="q7" value="b" /> b) Elle permet une parallélisation massive des calculs sur GPU</label>
+    <label class="option"><input type="radio" name="q7" value="c" /> c) Elle fonctionne mieux sur les vieux ordinateurs</label>
+    <label class="option"><input type="radio" name="q7" value="d" /> d) Elle utilise moins de données</label>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question" data-correct="b">
+    <div class="question-text">8. Quelle technique permet d'adapter un modèle pré-entraîné (Foundation Model) à une tâche métier spécifique ?</div>
+    <label class="option"><input type="radio" name="q8" value="a" /> a) Le Pre-training</label>
+    <label class="option"><input type="radio" name="q8" value="b" /> b) Le Fine-tuning (Réglage fin)</label>
+    <label class="option"><input type="radio" name="q8" value="c" /> c) Le Bag-of-Words</label>
+    <label class="option"><input type="radio" name="q8" value="d" /> d) La regression linéaire</label>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question" data-correct="b">
+    <div class="question-text">9. Quel modèle de la famille GPT a été le premier à démontrer des capacités de génération textuelle capables de tromper l'humain à grande échelle ?</div>
+    <label class="option"><input type="radio" name="q9" value="a" /> a) GPT-1</label>
+    <label class="option"><input type="radio" name="q9" value="b" /> b) GPT-2</label>
+    <label class="option"><input type="radio" name="q9" value="c" /> c) GPT-Classic</label>
+    <label class="option"><input type="radio" name="q9" value="d" /> d) BERT-Base</label>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="question" data-correct="b">
+    <div class="question-text">10. Quelle considération éthique est primordiale lors du déploiement de LLM ?</div>
+    <label class="option"><input type="radio" name="q10" value="a" /> a) La taille de l'écran de l'utilisateur</label>
+    <label class="option"><input type="radio" name="q10" value="b" /> b) Les biais présents dans les données d'entraînement (sexe, origine, etc.)</label>
+    <label class="option"><input type="radio" name="q10" value="c" /> c) Le prix du clavier utilisé par les développeurs</label>
+    <label class="option"><input type="radio" name="q10" value="d" /> d) La version du navigateur web</label>
+    <div class="feedback"></div>
+  </div>
+
+  <button type="button" id="submit-all" onclick="submitQuiz()">Valider mes réponses</button>
+</form>
+
+<div class="score-box" id="score-box">
+  <h2 id="score-text"></h2>
+  <p id="score-msg"></p>
+  <button class="btn-reset" onclick="resetQuiz()">🔄 Recommencer</button>
+</div>
+
+<script>
+const explanations = {
+  q1: "Le modèle BoW traite le texte comme une collection statistique où seule la fréquence compte, au détriment de la syntaxe.",
+  q2: "Dans un RNN, le signal d'erreur s'affaiblit à chaque étape, rendant difficile le lien entre des mots éloignés.",
+  q3: "La self-attention crée des liens dynamiques entre les tokens d'une séquence unique pour lever les ambiguïtés sémantiques.",
+  q4: "BERT \"lit\" dans les deux sens pour comprendre, GPT prédit le mot suivant de gauche à droite.",
+  q5: "Publié par Vaswani et al., cet article a marqué le passage de l'ère récurrente à l'ère de l'attention.",
+  q6: "C'est le processus itératif de génération de texte, token après token.",
+  q7: "Contrairement aux RNN qui traitent les mots un par un, l'attention permet d'analyser tous les mots simultanément.",
+  q8: "Le fine-tuning spécialise les connaissances générales du modèle pour une application précise.",
+  q9: "Sorti en 2019, GPT-2 a provoqué un débat mondial sur la sécurité de l'IA générative.",
+  q10: "Les modèles reproduisent et amplifient les préjugés contenus dans les textes du web qu'ils ont ingérés."
+};
+
+function submitQuiz() {
+  const questions = document.querySelectorAll('.question');
+  let score = 0;
+  let answered = 0;
+
+  questions.forEach((q, i) => {
+    const name = `q${i + 1}`;
+    const correct = q.dataset.correct;
+    const selected = q.querySelector(`input[name="${name}"]:checked`);
+    const feedback = q.querySelector('.feedback');
+
+    if (selected) {
+      answered++;
+      feedback.style.display = 'block';
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'feedback correct';
+        feedback.textContent = '✅ Correct ! ' + explanations[name];
+      } else {
+        feedback.className = 'feedback incorrect';
+        feedback.textContent = `❌ Incorrect. La bonne réponse est (${correct.toUpperCase()}). ` + explanations[name];
+      }
+    }
+  });
+
+  if (answered < questions.length) {
+    alert('Veuillez répondre à toutes les questions avant de valider.');
+    return;
+  }
+
+  const scoreBox = document.getElementById('score-box');
+  scoreBox.style.display = 'block';
+  document.getElementById('score-text').textContent = `${score} / ${questions.length}`;
+  const pct = Math.round((score / questions.length) * 100);
+  let msg = '';
+  if (pct >= 90) msg = '🌟 Excellent ! Vous maîtrisez les fondements du cours.';
+  else if (pct >= 70) msg = '👍 Très bien ! Quelques révisions sur les points incorrects et vous serez prêt·e.';
+  else if (pct >= 50) msg = '📚 Pas mal ! Relisez les sections correspondantes avant de continuer.';
+  else msg = '🔄 Prenez le temps de revoir le cours, puis réessayez.';
+  document.getElementById('score-msg').textContent = msg;
+  scoreBox.scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetQuiz() {
+  document.getElementById('quiz-form').reset();
+  document.querySelectorAll('.feedback').forEach(f => { f.style.display = 'none'; f.textContent = ''; });
+  document.getElementById('score-box').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

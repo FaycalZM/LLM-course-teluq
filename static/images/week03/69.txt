@@ -1,1 +1,1 @@
-Figure 3-16. Attention is made up of two major steps: relevance scoring for each posi‐ tion, then a step where we combine the information based on those scores.
+Figure 3-10. Attention is made up of two major steps: relevance scoring for each posi‐ tion, then a step where we combine the information based on those scores.

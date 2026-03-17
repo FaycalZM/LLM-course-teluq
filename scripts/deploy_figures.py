@@ -60,6 +60,14 @@ def main():
                         print(f"Warning: Figure {png_filename} not found.")
                     
                     caption = figure_map.get(png_filename, "")
+                    # Remap the figure number in the caption to the course-sequential
+                    # number (1-based position in CHAPTER_FIGURES for this week).
+                    course_fig_num = indices.index(idx) + 1
+                    caption = re.sub(
+                        r'^Figure\s+\d+-\d+\.',
+                        f'Figure {int(week_num)}-{course_fig_num}.',
+                        caption
+                    )
                     dest_txt = os.path.join(week_dest_dir, f"{idx}.txt")
                     with open(dest_txt, 'w', encoding='utf-8') as txt_f:
                         txt_f.write(caption)

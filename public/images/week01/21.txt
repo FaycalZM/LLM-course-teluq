@@ -1,1 +1,1 @@
-Figure 1-17. An encoder block revolves around self-attention to generate intermediate representations.
+Figure 1-16. An encoder block revolves around self-attention to generate intermediate representations.

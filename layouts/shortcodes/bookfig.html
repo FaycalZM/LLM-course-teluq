@@ -1,6 +1,7 @@
 {{ $src := .Get "src" }}
 {{ $week := .Get "week" }}
-{{ $captionPath := printf "static/images/week%s/%s.txt" $week $src }}
+{{ $srcBase := $src | strings.TrimSuffix ".png" }}
+{{ $captionPath := printf "static/images/week%s/%s.txt" $week $srcBase }}
 {{ $caption := "" }}
 {{ if fileExists $captionPath }}
   {{ $caption = readFile $captionPath }}

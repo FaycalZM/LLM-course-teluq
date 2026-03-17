@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Une définition mouvante : Qu’est-ce qu’un “Large” Language Model ?#Nous y sommes ! Après avoir exploré les briques et le moteur, regardons enfin l’édifice dans son ensemble. Mais attention, le terme “Large Language Model” (LLM) est un peu comme un horizon qui recule à mesure que l’on avance.
+Comme l’expliquent Jay Alammar et Maarten Grootendorst, la définition de ce qui est “large” a radicalement changé en quelques années seulement. En 2018, un modèle comme BERT (110 à 340 millions de paramètres) était considéré comme géant. Aujourd’hui, avec des modèles comme GPT-4 qui dépasseraient les mille milliards de paramètres, nos anciens géants ressemblent à des nains. 🔑 Je dois insister : Le mot “Large” ne fait pas seulement référence au nombre de paramètres (les “boutons” que le modèle ajuste pendant l’apprentissage), mais aussi à l’immensité des données ingérées : presque tout le texte produit par l’humanité et numérisé sur le web.
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2e3440">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="//localhost:1313/docs/ch1-fondements/week01/section-1-4/">
+  <meta property="og:site_name" content="LLM Course">
+  <meta property="og:title" content="1.4 Définition et applications des LLM">
+  <meta property="og:description" content="Une définition mouvante : Qu’est-ce qu’un “Large” Language Model ?#Nous y sommes ! Après avoir exploré les briques et le moteur, regardons enfin l’édifice dans son ensemble. Mais attention, le terme “Large Language Model” (LLM) est un peu comme un horizon qui recule à mesure que l’on avance.
+Comme l’expliquent Jay Alammar et Maarten Grootendorst, la définition de ce qui est “large” a radicalement changé en quelques années seulement. En 2018, un modèle comme BERT (110 à 340 millions de paramètres) était considéré comme géant. Aujourd’hui, avec des modèles comme GPT-4 qui dépasseraient les mille milliards de paramètres, nos anciens géants ressemblent à des nains. 🔑 Je dois insister : Le mot “Large” ne fait pas seulement référence au nombre de paramètres (les “boutons” que le modèle ajuste pendant l’apprentissage), mais aussi à l’immensité des données ingérées : presque tout le texte produit par l’humanité et numérisé sur le web.">
+  <meta property="og:locale" content="fr">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+
+
+  <meta itemprop="name" content="1.4 Définition et applications des LLM">
+  <meta itemprop="description" content="Une définition mouvante : Qu’est-ce qu’un “Large” Language Model ?#Nous y sommes ! Après avoir exploré les briques et le moteur, regardons enfin l’édifice dans son ensemble. Mais attention, le terme “Large Language Model” (LLM) est un peu comme un horizon qui recule à mesure que l’on avance.
+Comme l’expliquent Jay Alammar et Maarten Grootendorst, la définition de ce qui est “large” a radicalement changé en quelques années seulement. En 2018, un modèle comme BERT (110 à 340 millions de paramètres) était considéré comme géant. Aujourd’hui, avec des modèles comme GPT-4 qui dépasseraient les mille milliards de paramètres, nos anciens géants ressemblent à des nains. 🔑 Je dois insister : Le mot “Large” ne fait pas seulement référence au nombre de paramètres (les “boutons” que le modèle ajuste pendant l’apprentissage), mais aussi à l’immensité des données ingérées : presque tout le texte produit par l’humanité et numérisé sur le web.">
+  <meta itemprop="wordCount" content="1030">
+
+<title>1.4 Définition et applications des LLM | LLM Course</title>
+<link rel="icon" href="/favicon.png" >
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="//localhost:1313/docs/ch1-fondements/week01/section-1-4/">
+<link rel="stylesheet" href="/book.min.cc2c524ed250aac81b23d1f4af87344917b325208841feca0968fe450f570575.css" integrity="sha256-zCxSTtJQqsgbI9H0r4c0SRezJSCIQf7KCWj&#43;RQ9XBXU=" crossorigin="anonymous">
+
+
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/fr.search.min.44bea90aca060020062f6550c34beed0b0db07b937c67165a74b019ab894896f.js" integrity="sha256-RL6pCsoGACAGL2VQw0vu0LDbB7k3xnFlp0sBmriUiW8=" crossorigin="anonymous"></script>
+
+
+
+  <link rel="stylesheet" href="/css/colab.css">
+
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/livre.jpg" alt="Logo" /><span>LLM Course</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input id="book-search-input" type="text" 
+    placeholder="Rechercher"
+    aria-label="Rechercher"
+    maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d5ffa984d1889a21a05a9c923fa19a92" class="toggle" checked />
+    <label for="section-d5ffa984d1889a21a05a9c923fa19a92" class="flex">
+      <a role="button" class="">
+        Fondements des LLM</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/" class="">
+      Semaine 1 : Introduction aux LLM et historique du NLP</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/introduction/" class="">
+      Introduction</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-1/" class="">
+      1.1 Évolution du Traitement du Langage Naturel (NLP)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-2/" class="">
+      1.2 Limites des architectures séquentielles : RNN et LSTM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-3/" class="">
+      1.3 Le paradigme de l&#39;attention</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/section-1-4/" class="active">
+      1.4 Définition et applications des LLM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/lab/" class="">
+      Laboratoire</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ch1-fondements/week01/quiz/" class="">
+      Quiz</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 2</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 3</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 4</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 5</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-19671ec13f699b82235aadad56e3d8e2" class="toggle"  />
+    <label for="section-19671ec13f699b82235aadad56e3d8e2" class="flex">
+      <a role="button" class="">
+        Science des LLM</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 6</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 7</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 8</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 9</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 10</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-26878fd51edb23a5742cc9bff6d7b89d" class="toggle"  />
+    <label for="section-26878fd51edb23a5742cc9bff6d7b89d" class="flex">
+      <a role="button" class="">
+        Ingénierie des LLM</a>
+      <img src="/icons/chevron-right.svg" class="book-icon" alt="Expand" />
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 11</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 12</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 13</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a>
+      Week 14</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>1.4 Définition et applications des LLM</h3>
+
+  <label for="toc-control">
+    
+    <img src="/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#une-définition-mouvante--quest-ce-quun-large-language-model-">Une définition mouvante : Qu&rsquo;est-ce qu&rsquo;un &ldquo;Large&rdquo; Language Model ?</a></li>
+    <li><a href="#lépopée-gpt--de-lombre-à-la-lumière">L&rsquo;épopée GPT : De l&rsquo;ombre à la lumière</a></li>
+    <li><a href="#le-paradigme-de-lapprentissage--le-secret-en-deux-étapes">Le paradigme de l&rsquo;apprentissage : Le secret en deux étapes</a></li>
+    <li><a href="#applications-pratiques--un-couteau-suisse-universel">Applications pratiques : Un couteau suisse universel</a></li>
+    <li><a href="#éthique-et-limites--garder-les-yeux-ouverts">Éthique et limites : Garder les yeux ouverts</a></li>
+    <li><a href="#sources-complètes"><strong>SOURCES COMPLÈTES</strong></a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="une-définition-mouvante--quest-ce-quun-large-language-model-">Une définition mouvante : Qu&rsquo;est-ce qu&rsquo;un &ldquo;Large&rdquo; Language Model ?<a class="anchor" href="#une-d%c3%a9finition-mouvante--quest-ce-quun-large-language-model-">#</a></h2>
+<p>Nous y sommes ! Après avoir exploré les briques et le moteur, regardons enfin l&rsquo;édifice dans son ensemble. Mais attention, le terme &ldquo;Large Language Model&rdquo; (LLM) est un peu comme un horizon qui recule à mesure que l&rsquo;on avance.</p>
+<p>Comme l&rsquo;expliquent Jay Alammar et Maarten Grootendorst, la définition de ce qui est &ldquo;large&rdquo; a radicalement changé en quelques années seulement. En 2018, un modèle comme BERT (110 à 340 millions de paramètres) était considéré comme géant. Aujourd&rsquo;hui, avec des modèles comme GPT-4 qui dépasseraient les mille milliards de paramètres, nos anciens géants ressemblent à des nains. 🔑 <strong>Je dois insister :</strong> Le mot &ldquo;Large&rdquo; ne fait pas seulement référence au nombre de paramètres (les &ldquo;boutons&rdquo; que le modèle ajuste pendant l&rsquo;apprentissage), mais aussi à l&rsquo;immensité des données ingérées : presque tout le texte produit par l&rsquo;humanité et numérisé sur le web.</p>
+<p>Pour ce cours, nous adopterons la définition du livre : un LLM est un modèle de langage capable de comprendre et de générer du texte, entraîné sur des corpus massifs, et qui possède généralement une capacité de généralisation dépassant ses tâches d&rsquo;entraînement initiales.</p>
+<h2 id="lépopée-gpt--de-lombre-à-la-lumière">L&rsquo;épopée GPT : De l&rsquo;ombre à la lumière<a class="anchor" href="#l%c3%a9pop%c3%a9e-gpt--de-lombre-%c3%a0-la-lumi%c3%a8re">#</a></h2>
+<p>L&rsquo;histoire des LLM modernes est indissociable de l&rsquo;évolution de la famille GPT (<em>Generative Pre-trained Transformer</em>). Regardez la progression illustrée par les <strong>Figures 1-20 à 1-26</strong> :</p>
+<ol>
+<li><strong>GPT-1 (2018)</strong> : 117 millions de paramètres. C&rsquo;était la preuve de concept : un Transformer décodeur peut apprendre à lire tout seul.</li>
+<li><strong>GPT-2 (2019)</strong> : 1,5 milliard de paramètres. La rupture ! Le modèle commençait à écrire des articles si crédibles qu&rsquo;OpenAI a d&rsquo;abord hésité à le publier par peur des dérives.</li>
+<li><strong>GPT-3 (2020)</strong> : 175 milliards de paramètres. Le moment &ldquo;Eureka&rdquo;. Sans entraînement spécifique, le modèle pouvait traduire, coder et raisonner simplement grâce au <em>prompting</em>.</li>
+<li><strong>2023 : L&rsquo;explosion</strong> : Comme le montre la <strong>Figure 1-27</strong>, l&rsquo;année 2023 a marqué une accélération sans précédent avec l&rsquo;arrivée de Llama (Meta), Falcon (TII), Mistral et bien d&rsquo;autres, rendant ces puissances de calcul accessibles sur vos propres machines.</li>
+</ol>
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/25.png" alt="Figure 1-20. The architecture of a BERT base model with 12 encoders.">
+  <figcaption>Figure 1-20. The architecture of a BERT base model with 12 encoders.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/26.png" alt="Figure 1-21. Train a BERT model by using masked language modeling.">
+  <figcaption>Figure 1-21. Train a BERT model by using masked language modeling.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/27.png" alt="Figure 1-22. After pretraining BERT on masked language model, we fine-tune it for specific tasks.">
+  <figcaption>Figure 1-22. After pretraining BERT on masked language model, we fine-tune it for specific tasks.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/28.png" alt="Figure 1-23. The architecture of a GPT-1. It uses a decoder-only architecture and removes the encoder-attention block.">
+  <figcaption>Figure 1-23. The architecture of a GPT-1. It uses a decoder-only architecture and removes the encoder-attention block.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/29.png" alt="Figure 1-24. GPT models quickly grew in size with each iteration.">
+  <figcaption>Figure 1-24. GPT models quickly grew in size with each iteration.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/30.png" alt="Figure 1-25. Generative LLMs take in some input and try to complete it. With instruct models, this is more than just autocomplete and attempts to answer the question.">
+  <figcaption>Figure 1-25. Generative LLMs take in some input and try to complete it. With instruct models, this is more than just autocomplete and attempts to answer the question.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/31.png" alt="Figure 1-26. The context length is the maximum context an LLM can handle.">
+  <figcaption>Figure 1-26. The context length is the maximum context an LLM can handle.</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/32.png" alt="Figure 1-27. A comprehensive view into the Year of Generative AI. Note that many models are still missing from this overview!">
+  <figcaption>Figure 1-27. A comprehensive view into the Year of Generative AI. Note that many models are still missing from this overview!</figcaption>
+</figure>
+
+<h2 id="le-paradigme-de-lapprentissage--le-secret-en-deux-étapes">Le paradigme de l&rsquo;apprentissage : Le secret en deux étapes<a class="anchor" href="#le-paradigme-de-lapprentissage--le-secret-en-deux-%c3%a9tapes">#</a></h2>
+<p>C&rsquo;est ici que vous devez être très attentifs, car c&rsquo;est la base de votre futur travail d&rsquo;ingénieur en IA. Un LLM ne naît pas &ldquo;intelligent&rdquo;, il passe par deux phases distinctes.</p>
+<ol>
+<li><strong>Le Pré-entraînement (Pretraining)</strong> : Imaginez un étudiant qui lirait toutes les bibliothèques du monde pendant 20 ans, mais sans professeur. Il connaît tout, il sait prédire le mot suivant avec une précision diabolique, mais il n&rsquo;est pas &ldquo;poli&rdquo; et ne sait pas forcément répondre à une question. Il complète simplement la séquence. On appelle cela un <strong>Foundation Model</strong> ou <strong>Base Model</strong>.</li>
+<li><strong>Le Réglage Fin (Fine-tuning / Instruction Tuning)</strong> : C&rsquo;est l&rsquo;étape où l&rsquo;on donne un &ldquo;professeur&rdquo; au modèle. On lui montre des exemples de dialogues, de questions-réponses et de comportements souhaités. C&rsquo;est ce qui transforme un prédicteur de texte brut en un assistant comme ChatGPT ou Claude.</li>
+</ol>
+
+
+
+
+
+
+  
+
+<figure class="bookfig">
+  <img src="/images/week01/34.png" alt="Figure 1-28. Compared to traditional machine learning, LLM training takes a multistep approach.">
+  <figcaption>Figure 1-28. Compared to traditional machine learning, LLM training takes a multistep approach.</figcaption>
+</figure>
+
+<blockquote class="book-hint warning">
+<p><strong>Attention : erreur fréquente ici !</strong> Beaucoup d&rsquo;utilisateurs pensent que le modèle &ldquo;apprend&rdquo; de nouvelles informations pendant qu&rsquo;ils lui parlent. En réalité, le modèle est &ldquo;gelé&rdquo;. Il utilise ses connaissances acquises lors du pré-entraînement pour traiter votre demande actuelle.</p>
+</blockquote>
+<h2 id="applications-pratiques--un-couteau-suisse-universel">Applications pratiques : Un couteau suisse universel<a class="anchor" href="#applications-pratiques--un-couteau-suisse-universel">#</a></h2>
+<p>Le champ d&rsquo;application des LLM est si vaste qu&rsquo;il redéfinit des industries entières. Voici un aperçu des tâches qu&rsquo;un LLM peut accomplir sans être spécifiquement programmé pour elles :</p>
+<p><strong>Tableau 1-2 : Applications typiques des LLM</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Domaine</th>
+          <th style="text-align: left">Exemple de tâche</th>
+          <th style="text-align: left">Valeur ajoutée</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Rédaction</strong></td>
+          <td style="text-align: left">Copywriting, emails, articles</td>
+          <td style="text-align: left">Gain de productivité massif</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Analyse</strong></td>
+          <td style="text-align: left">Résumé de documents longs, extraction d&rsquo;entités</td>
+          <td style="text-align: left">Gain de temps d&rsquo;examen</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Code</strong></td>
+          <td style="text-align: left">Génération de fonctions Python, débogage</td>
+          <td style="text-align: left">Aide aux développeurs (Copilot)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Sémantique</strong></td>
+          <td style="text-align: left">Recherche d&rsquo;information par le sens (pas par mot-clé)</td>
+          <td style="text-align: left">Moteurs de recherche intelligents</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Créativité</strong></td>
+          <td style="text-align: left">Aide à l&rsquo;idéation, scénarisation</td>
+          <td style="text-align: left">Partenaire de brainstorming</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="éthique-et-limites--garder-les-yeux-ouverts">Éthique et limites : Garder les yeux ouverts<a class="anchor" href="#%c3%a9thique-et-limites--garder-les-yeux-ouverts">#</a></h2>
+<blockquote class="book-hint danger">
+<p>Je ne serais pas une bonne enseignante si je ne vous mettais pas en garde. Ces modèles sont des prouesses technologiques, mais ils ont des failles profondes que vous devez gérer.</p>
+<ol>
+<li><strong>Hallucinations</strong> : Comme le modèle ne fait que prédire le mot &ldquo;statistiquement le plus probable&rdquo;, il peut inventer des faits, des dates ou des citations juridiques avec un aplomb total. 🔑 <strong>Je dois insister :</strong> Ne faites jamais une confiance aveugle à la sortie d&rsquo;un LLM sans vérification.</li>
+<li><strong>Biais et représentations</strong> : Le modèle est le miroir de ses données. S&rsquo;il a lu des textes biaisés, il produira des réponses biaisées. La neutralité de l&rsquo;IA est un mythe ; la responsabilité de l&rsquo;humain est une réalité.</li>
+<li><strong>Transparence et opacité</strong> : Nous sommes face à des &ldquo;boîtes noires&rdquo;. Expliquer pourquoi un modèle a pris telle décision est l&rsquo;un des plus grands défis de la recherche actuelle.</li>
+</ol>
+</blockquote>
+<blockquote class="book-hint info">
+<p>Vous n&rsquo;apprenez pas seulement à utiliser des outils, vous apprenez à dompter une puissance statistique immense. L&rsquo;éthique n&rsquo;est pas une option, c&rsquo;est le garde-fou qui sépare une innovation utile d&rsquo;un désastre sociétal.</p>
+</blockquote>
+<p>Nous avons terminé notre tour d&rsquo;horizon théorique ! Vous avez maintenant une vision claire de la forêt. Dès la semaine prochaine, nous allons nous approcher des arbres et examiner les feuilles : les tokens et les embeddings. Mais d&rsquo;abord, place à la pratique en laboratoire !</p>
+<h2 id="sources-complètes"><strong>SOURCES COMPLÈTES</strong><a class="anchor" href="#sources-compl%c3%a8tes">#</a></h2>
+<ul>
+<li>Jay Alammar : The Illustrated Transformer (<a href="https://jalammar.github.io/illustrated-transformer/">https://jalammar.github.io/illustrated-transformer/</a>)</li>
+<li>Maarten Grootendorst : LLM Roadmap 2023 (<a href="https://maartengr.github.io/2023/12/19/llm-roadmap.html">https://maartengr.github.io/2023/12/19/llm-roadmap.html</a>)</li>
+<li>Hugging Face : NLP Course - Introduction (<a href="https://huggingface.co/learn/nlp-course/chapter1/1">https://huggingface.co/learn/nlp-course/chapter1/1</a>)</li>
+<li>GitHub Officiel : <a href="https://github.com/HandsOnLLM/Hands-On-Large-Language-Models/tree/main/chapter01">https://github.com/HandsOnLLM/Hands-On-Large-Language-Models/tree/main/chapter01</a></li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/docs/ch1-fondements/week01/section-1-3/" class="flex align-center">
+        <img src="/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>1.3 Le paradigme de l&#39;attention</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/docs/ch1-fondements/week01/lab/" class="flex align-center">
+        <span>Laboratoire</span>
+        <img src="/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#une-définition-mouvante--quest-ce-quun-large-language-model-">Une définition mouvante : Qu&rsquo;est-ce qu&rsquo;un &ldquo;Large&rdquo; Language Model ?</a></li>
+    <li><a href="#lépopée-gpt--de-lombre-à-la-lumière">L&rsquo;épopée GPT : De l&rsquo;ombre à la lumière</a></li>
+    <li><a href="#le-paradigme-de-lapprentissage--le-secret-en-deux-étapes">Le paradigme de l&rsquo;apprentissage : Le secret en deux étapes</a></li>
+    <li><a href="#applications-pratiques--un-couteau-suisse-universel">Applications pratiques : Un couteau suisse universel</a></li>
+    <li><a href="#éthique-et-limites--garder-les-yeux-ouverts">Éthique et limites : Garder les yeux ouverts</a></li>
+    <li><a href="#sources-complètes"><strong>SOURCES COMPLÈTES</strong></a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
