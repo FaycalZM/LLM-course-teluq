@@ -9,7 +9,7 @@
   {{ $caption = printf "Missing caption for %s" $src }}
 {{ end }}
 <figure class="bookfig" style="text-align: center; margin: 2rem 0;">
-  <img src="{{ printf "/images/week%s/%s" $week $src | relURL }}" alt="{{ $caption }}" style="max-width: 100%; height: auto; border: 1px solid #ddd; padding: 4px; border-radius: 4px;">
+  <img src="{{ printf "images/week%s/%s" $week $src | relURL }}" alt="{{ $caption }}" style="max-width: 100%; height: auto; border: 1px solid #ddd; padding: 4px; border-radius: 4px;">
   <figcaption style="font-style: italic; font-size: 0.9em; margin-top: 0.5rem; color: #555;">{{ $caption }}</figcaption>
 </figure>
 
