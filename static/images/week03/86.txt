@@ -1,1 +1,1 @@
-Figure 3-25. Rotary positional embeddings are added to the representation of tokens just before the relevance scoring step in self-attention.
+Figure 3-11. Rotary positional embeddings are added to the representation of tokens just before the relevance scoring step in self-attention.

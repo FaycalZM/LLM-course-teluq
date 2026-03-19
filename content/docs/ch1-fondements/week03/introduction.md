@@ -1,10 +1,7 @@
 ---
-title: "Semaine 3 : Architecture Transformer approfondie"
-weight: 3
-bookCollapseSection: true
+title: "Introduction"
+weight: 1
 ---
-
-## Au cœur des Transformers : Mécanismes d'attention et blocs Transformer
 
 Bonjour à toutes et à tous ! J'espère que vous avez bien dormi, car aujourd'hui, nous entrons dans la "salle des machines". ⚙️ La semaine dernière, nous avons étudié les atomes (les tokens) et leur position dans l'espace (les embeddings). Aujourd'hui, nous allons voir comment ces atomes interagissent pour créer de la pensée artificielle. Nous allons disséquer le mécanisme d'attention, non plus seulement comme une intuition, mais comme une symphonie mathématique de haute précision.
 

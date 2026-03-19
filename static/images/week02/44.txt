@@ -1,1 +1,1 @@
-Figure 2-14. Language models produce contextualized token embeddings that improve on raw, static token embeddings.
+Figure 2-8. Language models produce contextualized token embeddings that improve on raw, static token embeddings.

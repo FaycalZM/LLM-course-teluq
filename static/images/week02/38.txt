@@ -1,1 +1,1 @@
-Figure 2-1. High-level view of a language model and its input prompt.
+Figure 2-3. High-level view of a language model and its input prompt.

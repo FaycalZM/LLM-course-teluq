@@ -1,1 +1,1 @@
-Figure 3-2. A Transformer LLM is made up of a tokenizer, a stack of Transformer blocks, and a language modeling head.
+Figure 3-19. A Transformer LLM is made up of a tokenizer, a stack of Transformer blocks, and a language modeling head.

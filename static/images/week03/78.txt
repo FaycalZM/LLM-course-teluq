@@ -1,1 +1,1 @@
-Figure 3-18. A comparison of different kinds of attention: the original multi-head, grouped-query attention, and multi-query attention (source: “Fast transformer decod‐ ing: One write-head is all you need”).
+Figure 3-9. A comparison of different kinds of attention: the original multi-head, grouped-query attention, and multi-query attention (source: “Fast transformer decod‐ ing: One write-head is all you need”).

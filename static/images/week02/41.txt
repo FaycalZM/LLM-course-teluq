@@ -1,1 +1,1 @@
-Figure 2-4. Tokenizers are also used to process the output of the model by converting the output token ID into the word or token associated with that ID.
+Figure 2-6. Tokenizers are also used to process the output of the model by converting the output token ID into the word or token associated with that ID.

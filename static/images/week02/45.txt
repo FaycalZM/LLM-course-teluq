@@ -1,1 +1,1 @@
-Figure 2-15. A language model operates on raw, static embeddings as its input and produces contextual text embeddings.
+Figure 2-9. A language model operates on raw, static embeddings as its input and produces contextual text embeddings.
