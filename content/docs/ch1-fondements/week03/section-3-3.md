@@ -3,6 +3,8 @@ title: "3.3 Blocs Transformer et optimisation"
 weight: 4
 ---
 
+{{< katex />}}
+
 ## L'architecture du sanctuaire : Le bloc Transformer
 
 Bonjour à toutes et à tous ! Nous avons vu comment les mots se parlent à travers l'attention (3.1) et comment ils se repèrent dans l'espace via RoPE (3.2). Mais imaginez maintenant que vous essayiez de faire tenir cette conversation dans un ouragan permanent. Sans une structure pour stabiliser les signaux, l'information se perdrait dans un chaos mathématique total.

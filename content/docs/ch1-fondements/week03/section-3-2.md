@@ -3,6 +3,8 @@ title: "3.2 Encodage positionnel"
 weight: 3
 ---
 
+{{< katex />}}
+
 ## Le paradoxe du Transformer : Une intelligence sans boussole
 
 Imaginez, mes chers étudiants, que je vous donne une boîte remplie de mots découpés. Je les jette sur une table et je vous demande : "Quelle est l'histoire ?". Vous seriez bien en peine de me répondre ! C'est précisément le problème du Transformer que nous avons vu en section 3.1. 

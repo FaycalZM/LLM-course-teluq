@@ -3,6 +3,8 @@ title: "3.1 Le mécanisme d'attention : Mathématiques détaillées"
 weight: 2
 ---
 
+{{< katex />}}
+
 ## La bibliothèque infinie : L'analogie Query, Key, Value
 
 Avant de plonger dans les matrices, laissez-moi vous raconter une histoire. Imaginez que vous soyez dans une bibliothèque immense à la recherche d'une information précise sur le "climat". 
