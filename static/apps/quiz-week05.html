@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Semaine 5 — Modèles Génératifs (GPT)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 1.5rem;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .question {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.25rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+            font-size: 0.98rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 0.35rem;
+            cursor: pointer;
+            transition: background 0.15s;
+            font-size: 0.93rem;
+        }
+
+        .option:hover {
+            background: #f1f5f9;
+        }
+
+        .option input[type="radio"] {
+            margin-top: 0.2rem;
+            accent-color: #6366f1;
+            flex-shrink: 0;
+        }
+
+        .feedback {
+            margin-top: 0.85rem;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .btn-check {
+            margin-top: 1rem;
+            padding: 0.5rem 1.2rem;
+            background: #6366f1;
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-check:hover {
+            background: #4f46e5;
+        }
+
+        .score-box {
+            background: #ede9fe;
+            border: 1px solid #c4b5fd;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .score-box h2 {
+            font-size: 1.6rem;
+            color: #4c1d95;
+            margin-bottom: 0.25rem;
+        }
+
+        .score-box p {
+            color: #6d28d9;
+            font-size: 0.95rem;
+        }
+
+        .btn-reset {
+            margin-top: 1rem;
+            padding: 0.5rem 1.4rem;
+            background: #7c3aed;
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-reset:hover {
+            background: #6d28d9;
+        }
+
+        #submit-all {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background: #0f172a;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background 0.2s;
+        }
+
+        #submit-all:hover {
+            background: #1e3a5f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🧪 Quiz — Semaine 5</h1>
+    <p class="subtitle">Modèles Génératifs (GPT) · 10 questions</p>
+
+    <form id="quiz-form">
+
+        <div class="question" data-correct="c">
+            <div class="question-text">1. Quelle architecture est utilisée par les modèles de la famille GPT pour
+                maximiser l'efficacité de la génération ?</div>
+            <label class="option"><input type="radio" name="q1" value="a" /> a) Encoder-only</label>
+            <label class="option"><input type="radio" name="q1" value="b" /> b) Encoder-Decoder</label>
+            <label class="option"><input type="radio" name="q1" value="c" /> c) Decoder-only</label>
+            <label class="option"><input type="radio" name="q1" value="d" /> d) RNN à mémoire longue</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="b">
+            <div class="question-text">2. Quel paramètre permet de contrôler le niveau de "créativité" ou de
+                "déterminisme" d'une réponse ?</div>
+            <label class="option"><input type="radio" name="q2" value="a" /> a) max_new_tokens</label>
+            <label class="option"><input type="radio" name="q2" value="b" /> b) Temperature</label>
+            <label class="option"><input type="radio" name="q2" value="c" /> c) n_ctx</label>
+            <label class="option"><input type="radio" name="q2" value="d" /> d) weight_decay</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="c">
+            <div class="question-text">3. Quelle technique d'échantillonnage limite le choix du prochain token aux mots
+                dont la probabilité cumulée atteint un certain seuil ?</div>
+            <label class="option"><input type="radio" name="q3" value="a" /> a) Greedy Search</label>
+            <label class="option"><input type="radio" name="q3" value="b" /> b) Top-K</label>
+            <label class="option"><input type="radio" name="q3" value="c" /> c) Nucleus Sampling (Top-P)</label>
+            <label class="option"><input type="radio" name="q3" value="d" /> d) Beam Search</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="c">
+            <div class="question-text">4. Quel modèle est particulièrement recommandé pour les utilisateurs "GPU-poor"
+                car il tourne sur des appareils mobiles ou des Colab gratuits ?</div>
+            <label class="option"><input type="radio" name="q4" value="a" /> a) GPT-4</label>
+            <label class="option"><input type="radio" name="q4" value="b" /> b) Llama-3-70B</label>
+            <label class="option"><input type="radio" name="q4" value="c" /> c) Phi-3-mini</label>
+            <label class="option"><input type="radio" name="q4" value="d" /> d) Falcon-180B</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="b">
+            <div class="question-text">5. Qu'est-ce qu'une "hallucination" dans le contexte des LLM ?</div>
+            <label class="option"><input type="radio" name="q5" value="a" /> a) Un bug qui fait planter
+                l'ordinateur</label>
+            <label class="option"><input type="radio" name="q5" value="b" /> b) Une réponse fluide et convaincante mais
+                factuellement fausse</label>
+            <label class="option"><input type="radio" name="q5" value="c" /> c) Le fait que le modèle utilise trop de
+                VRAM</label>
+            <label class="option"><input type="radio" name="q5" value="d" /> d) Une image générée à la place du
+                texte</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="b">
+            <div class="question-text">6. Quelle est la différence majeure entre un "Base model" et un "Chat model" ?
+            </div>
+            <label class="option"><input type="radio" name="q6" value="a" /> a) Le Chat model est plus grand</label>
+            <label class="option"><input type="radio" name="q6" value="b" /> b) Le Chat model a subi un Instruction
+                Tuning et un alignement (RLHF) pour suivre des consignes</label>
+            <label class="option"><input type="radio" name="q6" value="c" /> c) Le Base model est gratuit, le Chat model
+                est payant</label>
+            <label class="option"><input type="radio" name="q6" value="d" /> d) Il n'y a aucune différence
+                technique</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="c">
+            <div class="question-text">7. Combien de paramètres possède le modèle GPT-3, marquant le début de l'ère des
+                modèles géants ?</div>
+            <label class="option"><input type="radio" name="q7" value="a" /> a) 117 millions</label>
+            <label class="option"><input type="radio" name="q7" value="b" /> b) 1,5 milliard</label>
+            <label class="option"><input type="radio" name="q7" value="c" /> c) 175 milliards</label>
+            <label class="option"><input type="radio" name="q7" value="d" /> d) 1 000 milliards</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="c">
+            <div class="question-text">8. Quel token spécial indique au modèle que la génération d'un texte est terminée
+                ?</div>
+            <label class="option"><input type="radio" name="q8" value="a" /> a) `[CLS]`</label>
+            <label class="option"><input type="radio" name="q8" value="b" /> b) &lt;s&gt;</label>
+            <label class="option"><input type="radio" name="q8" value="c" /> c) &lt;|endoftext|&gt; ou &lt;|end|&gt;
+                (EOS)</label>
+            <label class="option"><input type="radio" name="q8" value="d" /> d) `[MASK]`</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="c">
+            <div class="question-text">9. Quelle stratégie de décodage garantit de choisir systématiquement le token
+                ayant la probabilité la plus élevée ?</div>
+            <label class="option"><input type="radio" name="q9" value="a" /> a) Random Sampling</label>
+            <label class="option"><input type="radio" name="q9" value="b" /> b) Nucleus Sampling</label>
+            <label class="option"><input type="radio" name="q9" value="c" /> c) Greedy Decoding</label>
+            <label class="option"><input type="radio" name="q9" value="d" /> d) Top-K (K=50)</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="b">
+            <div class="question-text">10. Quel avantage majeur offre l'Instruction Tuning pour un développeur
+                d'applications ?</div>
+            <label class="option"><input type="radio" name="q10" value="a" /> a) Le modèle répond plus vite</label>
+            <label class="option"><input type="radio" name="q10" value="b" /> b) Le modèle comprend mieux les formats
+                (JSON, listes) et les consignes de persona</label>
+            <label class="option"><input type="radio" name="q10" value="c" /> c) Le modèle utilise moins de
+                tokens</label>
+            <label class="option"><input type="radio" name="q10" value="d" /> d) Le modèle n'a plus besoin
+                d'embeddings</label>
+            <div class="feedback"></div>
+        </div>
+
+        <button type="button" id="submit-all" onclick="submitQuiz()">Valider mes réponses</button>
+    </form>
+
+    <div class="score-box" id="score-box">
+        <h2 id="score-text"></h2>
+        <p id="score-msg"></p>
+        <button class="btn-reset" onclick="resetQuiz()">🔄 Recommencer</button>
+    </div>
+
+    <script>
+        const explanations = {
+            q1: "Contrairement à BERT, GPT n'utilise que la partie décodeur pour prédire le mot suivant de manière autorégressive.",
+            q2: "Une température basse rend le modèle prévisible (froid), une température haute le rend créatif (chaud).",
+            q3: "Le Top-P (Nucleus) sélectionne dynamiquement le « noyau » des mots les plus probables.",
+            q4: "Avec 3.8B de paramètres, Phi-3-mini est extrêmement efficace pour sa taille.",
+            q5: "Le modèle privilégie la vraisemblance statistique sur la vérité historique ou logique.",
+            q6: "L'instruction tuning transforme un compléteur de texte en un assistant conversationnel.",
+            q7: "GPT-3 a prouvé qu'à 175B de paramètres, de nouvelles capacités émergent.",
+            q8: "Le token End-Of-Sequence (EOS) déclenche l'arrêt de la boucle autorégressive.",
+            q9: "Le décodage « glouton » choisit toujours l'option n°1, sans aucun hasard.",
+            q10: "Cela permet de guider le modèle via le « Prompt Engineering » sans changer le code."
+        };
+
+        function submitQuiz() {
+            const questions = document.querySelectorAll('.question');
+            let score = 0;
+            let answered = 0;
+
+            questions.forEach((q, i) => {
+                const name = `q${i + 1}`;
+                const correct = q.dataset.correct;
+                const selected = q.querySelector(`input[name="${name}"]:checked`);
+                const feedback = q.querySelector('.feedback');
+
+                if (selected) {
+                    answered++;
+                    feedback.style.display = 'block';
+                    if (selected.value === correct) {
+                        score++;
+                        feedback.className = 'feedback correct';
+                        feedback.textContent = '✅ Correct ! ' + explanations[name];
+                    } else {
+                        feedback.className = 'feedback incorrect';
+                        feedback.textContent = `❌ Incorrect. La bonne réponse est (${correct.toUpperCase()}). ` + explanations[name];
+                    }
+                }
+            });
+
+            if (answered < questions.length) {
+                alert('Veuillez répondre à toutes les questions avant de valider.');
+                return;
+            }
+
+            const scoreBox = document.getElementById('score-box');
+            scoreBox.style.display = 'block';
+            document.getElementById('score-text').textContent = `${score} / ${questions.length}`;
+            const pct = Math.round((score / questions.length) * 100);
+            let msg = '';
+            if (pct >= 90) msg = '🌟 Excellent ! Vous maîtrisez les modèles génératifs et l\'art du pilotage de LLM.';
+            else if (pct >= 70) msg = '👍 Très bien ! Un petit tour sur le Top-P et la température et vous serez au top.';
+            else if (pct >= 50) msg = '📚 Pas mal ! Relisez les sections sur l\'alignement avant de continuer.';
+            else msg = '🔄 Prenez le temps de revoir cette semaine 5, puis réessayez.';
+            document.getElementById('score-msg').textContent = msg;
+            scoreBox.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            document.getElementById('quiz-form').reset();
+            document.querySelectorAll('.feedback').forEach(f => { f.style.display = 'none'; f.textContent = ''; });
+            document.getElementById('score-box').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

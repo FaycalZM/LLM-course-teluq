@@ -1,1 +1,1 @@
-Figure 5-6. The context length is the maximum context an LLM can handle.
+Figure 5-4. The context length is the maximum context an LLM can handle.

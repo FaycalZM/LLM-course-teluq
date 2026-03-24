@@ -35,6 +35,7 @@ Pour des tâches comme la traduction, nous avons utilisé des structures plus co
 
 Une fois que le décodeur a reçu ce vecteur de contexte, il commence la génération. Comme vous pouvez le voir sur la **Figure 1-11 : Processus autoregressive**, la génération n'est pas instantanée. Le modèle prédit le premier mot, puis utilise ce premier mot comme entrée pour prédire le second, et ainsi de suite.
 
+<a id="fig-1-11"></a>
 {{< bookfig src="16.png" week="01" >}}
 
 C'est ce qu'on appelle la nature **autorégressive** des modèles de langage. 🔑 **C'est un concept non-négociable :** presque tous les LLM actuels, y compris les plus puissants, fonctionnent encore sur ce principe de "boucle" où la sortie de l'étape *t* devient l'entrée de l'étape *t+1*. Le problème des RNN est que cette boucle est strictement séquentielle, ce qui rend l'entraînement désespérément lent car on ne peut pas traiter tous les mots en même temps.

@@ -1,1 +1,1 @@
-Figure 5-9. A higher increases the likelihood that less probable tokens are generated and vice versa.
+Figure 5-7. A higher temperature increases the likelihood that less probable tokens are generated and vice versa.

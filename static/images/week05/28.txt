@@ -1,1 +1,1 @@
-Figure 5-3. The architecture of a GPT-1. It uses a decoder-only architecture and removes the encoder-attention block.
+Figure 5-1. The architecture of a GPT-1. It uses a decoder-only architecture and removes the encoder-attention block.

@@ -13,6 +13,7 @@ Comme vous pouvez l'observer sur la **Figure 1-1 : Timeline historique du NLP**,
 
 À partir des années 1990, un changement radical s'opère : nous cessons de dire à la machine *comment* le langage fonctionne, et nous commençons à lui montrer d'immenses quantités de textes pour qu'elle apprenne les statistiques d'usage. C'est l'essor du NLP statistique, capable de réaliser les **tâches typiques du Language AI** illustrées en **Figure 1-2** : la classification de spams, l'analyse de sentiments ou la traduction automatique rudimentaire.
 
+<a id="fig-1-2"></a>
 {{< bookfig src="6.png" week="01" >}}
 
 ## Le mécanisme de la "Sacoche de mots" (Bag-of-Words)
@@ -69,7 +70,9 @@ C'est ici que nous touchons aux limites des modèles pré-2018. Prenons l'exempl
 
 Dans les approches de Word2Vec ou GloVe, le mot "bank" n'a qu'un seul vecteur. Ce vecteur est une sorte de "moyenne" confuse entre la finance et la géographie. 🔑 **Je dois insister :** c'est la limite ultime des représentations non contextuelles. La machine ne peut pas changer sa vision d'un mot en fonction de ce qui l'entoure. Il nous manquait une technologie capable de générer des embeddings *dynamiques*, capables de se transformer selon la phrase. C'est ce défi qui a pavé la voie aux Transformers que nous étudierons en section 1.3.
 
-## Tableau comparatif : Approches Symboliques vs Neuronales
+<a id="tab-1-1"></a>
+
+## Tableau comparatif 1-1 : Approches Symboliques vs Neuronales
 
 | Dimension           | Approches Symboliques/Statistiques (BoW, TF-IDF)    | Approches Neuronales (Word2Vec, GloVe)             |
 | :------------------ | :-------------------------------------------------- | :------------------------------------------------- |
