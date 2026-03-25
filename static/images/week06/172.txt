@@ -1,0 +1,1 @@
+Figure 6-13. Dense retrieval is one of the key types of semantic search, relying on the similarity of text embeddings to retrieve relevant results.

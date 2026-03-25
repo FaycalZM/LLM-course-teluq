@@ -3,6 +3,8 @@ title: "Introduction "
 weight: 1
 ---
 
+## GPT et l'art de la génération textuelle
+
 Bonjour à toutes et à tous ! Je suis ravie de vous retrouver pour cette étape charnière de notre parcours. La semaine dernière, nous avons étudié BERT, un modèle qui excelle dans l'écoute et la compréhension. Aujourd'hui, nous basculons de l'autre côté du miroir : 
 > [!TIP]
 nous allons explorer les modèles qui "parlent" et qui "créent".

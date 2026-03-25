@@ -1,0 +1,1 @@
+Figure 6-4. Convert some external knowledge base to a vector database. We can then query this vector database for information about the knowledge base.

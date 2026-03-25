@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Semaine 6 — Recherche Sémantique et Embeddings</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 1.5rem;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .question {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.25rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+            font-size: 0.98rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 0.35rem;
+            cursor: pointer;
+            transition: background 0.15s;
+            font-size: 0.93rem;
+        }
+
+        .option:hover {
+            background: #f1f5f9;
+        }
+
+        .option input[type="radio"] {
+            margin-top: 0.2rem;
+            accent-color: #6366f1;
+            flex-shrink: 0;
+        }
+
+        .feedback {
+            margin-top: 0.85rem;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .score-box {
+            background: #ede9fe;
+            border: 1px solid #c4b5fd;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .score-box h2 {
+            font-size: 1.6rem;
+            color: #4c1d95;
+            margin-bottom: 0.25rem;
+        }
+
+        .score-box p {
+            color: #6d28d9;
+            font-size: 0.95rem;
+        }
+
+        .btn-reset {
+            margin-top: 1rem;
+            padding: 0.5rem 1.4rem;
+            background: #7c3aed;
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-reset:hover {
+            background: #6d28d9;
+        }
+
+        #submit-all {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background: #0f172a;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background 0.2s;
+        }
+
+        #submit-all:hover {
+            background: #1e3a5f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🧪 Quiz — Semaine 6</h1>
+    <p class="subtitle">Recherche Sémantique et Embeddings · 10 questions</p>
+
+    <form id="quiz-form">
+
+        <div class="question" data-correct="c">
+            <div class="question-text">1. Quelle est la dimension typique d'un vecteur produit par le modèle de
+                référence <code>all-mpnet-base-v2</code> ?</div>
+            <label class="option"><input type="radio" name="q1" value="a" /> a) 384</label>
+            <label class="option"><input type="radio" name="q1" value="b" /> b) 512</label>
+            <label class="option"><input type="radio" name="q1" value="c" /> c) 768</label>
+            <label class="option"><input type="radio" name="q1" value="d" /> d) 1024</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="b">
+            <div class="question-text">2. Pourquoi la similarité cosinus est-elle préférée à la distance euclidienne
+                (L2) en recherche sémantique ?</div>
+            <label class="option"><input type="radio" name="q2" value="a" /> a) Elle est plus rapide à calculer sur CPU.</label>
+            <label class="option"><input type="radio" name="q2" value="b" /> b) Elle ignore la magnitude (longueur) du
+                vecteur pour se concentrer sur l'angle sémantique.</label>
+            <label class="option"><input type="radio" name="q2" value="c" /> c) Elle permet de traiter des textes en
+                plusieurs langues.</label>
+            <label class="option"><input type="radio" name="q2" value="d" /> d) Elle réduit automatiquement la taille du
+                dictionnaire.</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="c">
+            <div class="question-text">3. Quelle bibliothèque est le standard industriel pour la recherche de plus
+                proches voisins à l'échelle de millions de vecteurs ?</div>
+            <label class="option"><input type="radio" name="q3" value="a" /> a) Pandas</label>
+            <label class="option"><input type="radio" name="q3" value="b" /> b) Scikit-learn</label>
+            <label class="option"><input type="radio" name="q3" value="c" /> c) FAISS (Facebook AI Similarity Search)</label>
+            <label class="option"><input type="radio" name="q3" value="d" /> d) PyTorch-Live</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="b">
+            <div class="question-text">4. Dans une stratégie de chunking, pourquoi utilise-t-on souvent un "overlap"
+                (chevauchement) ?</div>
+            <label class="option"><input type="radio" name="q4" value="a" /> a) Pour doubler la taille de la base de
+                données.</label>
+            <label class="option"><input type="radio" name="q4" value="b" /> b) Pour s'assurer qu'une information
+                située à la limite d'un découpage ne perde pas son contexte.</label>
+            <label class="option"><input type="radio" name="q4" value="c" /> c) Pour permettre au modèle de s'entraîner
+                deux fois plus vite.</label>
+            <label class="option"><input type="radio" name="q4" value="d" /> d) Pour masquer les données sensibles.</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="b">
+            <div class="question-text">5. Quelle technique est nécessaire pour qu'un modèle "sache" que dans votre
+                entreprise, le terme "Projet Alpha" est lié à "Logistique" ?</div>
+            <label class="option"><input type="radio" name="q5" value="a" /> a) Le Zero-shot classification.</label>
+            <label class="option"><input type="radio" name="q5" value="b" /> b) Le Fine-tuning pour le retrieval avec
+                des paires contrastives.</label>
+            <label class="option"><input type="radio" name="q5" value="c" /> c) L'augmentation de la température.</label>
+            <label class="option"><input type="radio" name="q5" value="d" /> d) Le passage en quantification 4-bit.</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="b">
+            <div class="question-text">6. Quel est le principal défaut de l'utilisation d'un seul vecteur pour
+                représenter un document de 50 pages ?</div>
+            <label class="option"><input type="radio" name="q6" value="a" /> a) Le vecteur devient trop lourd pour le
+                disque dur.</label>
+            <label class="option"><input type="radio" name="q6" value="b" /> b) Les thématiques multiples se mélangent
+                dans une "moyenne" floue.</label>
+            <label class="option"><input type="radio" name="q6" value="c" /> c) Le modèle refuse de traiter plus de
+                512 caractères.</label>
+            <label class="option"><input type="radio" name="q6" value="d" /> d) La similarité cosinus devient négative.</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="c">
+            <div class="question-text">7. Dans FAISS, quel index est utilisé pour une recherche sémantique simple basée
+                sur le produit scalaire (Inner Product) ?</div>
+            <label class="option"><input type="radio" name="q7" value="a" /> a) IndexFlatL2</label>
+            <label class="option"><input type="radio" name="q7" value="b" /> b) IndexIVFFlat</label>
+            <label class="option"><input type="radio" name="q7" value="c" /> c) IndexFlatIP</label>
+            <label class="option"><input type="radio" name="q7" value="d" /> d) IndexBinary</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="a">
+            <div class="question-text">8. Quelle est la différence fondamentale entre la recherche "Dense" et la
+                recherche "Sparse" ?</div>
+            <label class="option"><input type="radio" name="q8" value="a" /> a) Dense utilise des vecteurs de nombres
+                réels, Sparse utilise des comptes de mots (TF-IDF).</label>
+            <label class="option"><input type="radio" name="q8" value="b" /> b) Dense est plus lente que Sparse.</label>
+            <label class="option"><input type="radio" name="q8" value="c" /> c) Sparse ne fonctionne qu'avec BERT.</label>
+            <label class="option"><input type="radio" name="q8" value="d" /> d) Dense nécessite un accès à Internet.</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="b">
+            <div class="question-text">9. Quelle stratégie de "pooling" est la plus couramment utilisée par SBERT pour
+                obtenir un embedding de phrase ?</div>
+            <label class="option"><input type="radio" name="q9" value="a" /> a) Prendre uniquement le premier caractère.</label>
+            <label class="option"><input type="radio" name="q9" value="b" /> b) Faire la moyenne (Mean) de tous les
+                vecteurs de tokens de la phrase.</label>
+            <label class="option"><input type="radio" name="q9" value="c" /> c) Prendre le vecteur du dernier token
+                généré.</label>
+            <label class="option"><input type="radio" name="q9" value="d" /> d) Additionner les IDs des tokens.</label>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="question" data-correct="c">
+            <div class="question-text">10. Quelle métrique d'évaluation donne une importance accrue à la position du
+                bon résultat (mieux vaut être 1er que 5ème) ?</div>
+            <label class="option"><input type="radio" name="q10" value="a" /> a) Hit Rate @ 10</label>
+            <label class="option"><input type="radio" name="q10" value="b" /> b) Accuracy</label>
+            <label class="option"><input type="radio" name="q10" value="c" /> c) MRR (Mean Reciprocal Rank)</label>
+            <label class="option"><input type="radio" name="q10" value="d" /> d) Taux de compression</label>
+            <div class="feedback"></div>
+        </div>
+
+        <button type="button" id="submit-all" onclick="submitQuiz()">Valider mes réponses</button>
+    </form>
+
+    <div class="score-box" id="score-box">
+        <h2 id="score-text"></h2>
+        <p id="score-msg"></p>
+        <button class="btn-reset" onclick="resetQuiz()">🔄 Recommencer</button>
+    </div>
+
+    <script>
+        const explanations = {
+            q1: "Ce modèle, basé sur une architecture BERT-base, utilise des vecteurs de 768 nombres réels pour compresser le sens d'une phrase.",
+            q2: "Dans le langage, un texte long et un texte court sur le même sujet ont des magnitudes différentes mais pointent dans la même direction sémantique.",
+            q3: "FAISS est optimisé pour les calculs matriciels massifs et permet des recherches approximatives ultra-rapides.",
+            q4: "Le chevauchement permet de conserver le lien sémantique entre la fin d'un bloc et le début du suivant.",
+            q5: "Le fine-tuning ajuste les distances vectorielles pour coller à la réalité d'un domaine spécifique.",
+            q6: "Un document long contient trop d'informations pour être résumé en un seul point sans perte massive de précision.",
+            q7: "IndexFlatIP calcule le produit scalaire, qui équivaut à la similarité cosinus si les vecteurs sont normalisés.",
+            q8: "La recherche dense capture le sens (embeddings), la recherche sparse capture les mots exacts (lexical).",
+            q9: "Le Mean Pooling capture une représentation plus équilibrée de la séquence que le simple token CLS.",
+            q10: "Le MRR calcule l'inverse du rang du premier résultat correct, valorisant la précision en haut de liste."
+        };
+
+        function submitQuiz() {
+            const questions = document.querySelectorAll('.question');
+            let score = 0;
+            let answered = 0;
+
+            questions.forEach((q, i) => {
+                const name = `q${i + 1}`;
+                const correct = q.dataset.correct;
+                const selected = q.querySelector(`input[name="${name}"]:checked`);
+                const feedback = q.querySelector('.feedback');
+
+                if (selected) {
+                    answered++;
+                    feedback.style.display = 'block';
+                    if (selected.value === correct) {
+                        score++;
+                        feedback.className = 'feedback correct';
+                        feedback.textContent = '✅ Correct ! ' + explanations[name];
+                    } else {
+                        feedback.className = 'feedback incorrect';
+                        feedback.textContent = `❌ Incorrect. La bonne réponse est (${correct.toUpperCase()}). ` + explanations[name];
+                    }
+                }
+            });
+
+            if (answered < questions.length) {
+                alert('Veuillez répondre à toutes les questions avant de valider.');
+                return;
+            }
+
+            const scoreBox = document.getElementById('score-box');
+            scoreBox.style.display = 'block';
+            document.getElementById('score-text').textContent = `${score} / ${questions.length}`;
+            const pct = Math.round((score / questions.length) * 100);
+            let msg = '';
+            if (pct >= 90) msg = '🌟 Excellent ! Vous maîtrisez la recherche sémantique et les bases vectorielles.';
+            else if (pct >= 70) msg = '👍 Très bien ! Quelques révisions sur FAISS et le fine-tuning de retrieval et vous serez au top.';
+            else if (pct >= 50) msg = '📚 Pas mal ! Relisez les sections sur le chunking et la similarité cosinus avant de continuer.';
+            else msg = '🔄 Prenez le temps de revoir cette semaine 6, puis réessayez.';
+            document.getElementById('score-msg').textContent = msg;
+            scoreBox.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            document.getElementById('quiz-form').reset();
+            document.querySelectorAll('.feedback').forEach(f => { f.style.display = 'none'; f.textContent = ''; });
+            document.getElementById('score-box').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

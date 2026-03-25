@@ -30,7 +30,7 @@ Le processus est le suivant :
 🔑 **La distinction non-négociable :** Dans ce scénario, nous ne classons pas par rapport à une règle apprise, mais par rapport à la proximité sémantique brute. C'est le modèle de langage qui "sait" déjà que "cassé" est sémantiquement plus proche d' "Urgent" que de "Normal".
 
 ## L'outil de mesure : La Similarité Cosinus
-Comment la machine calcule-t-elle cette "proximité" ? Elle utilise généralement la **Similarité Cosinus**, représentée en [**Figure 4-11**](#fig-4-11). 
+Comment la machine calcule-t-elle cette "proximité" ? Elle utilise généralement la **Similarité Cosinus** (nous allons la voir en détail dans la [**Semaine 06**]({{< relref "section-6-2.md" >}})), représentée en [**Figure 4-11**](#fig-4-11). 
 
 > [!WARNING]
 ⚠️ **Attention : erreur fréquente ici !** On pourrait être tenté d'utiliser la distance euclidienne (la règle droite entre deux points). Mais en NLP, la longueur des vecteurs peut varier selon la richesse du texte. La similarité cosinus, elle, ne regarde que l'**angle** entre les vecteurs.

@@ -1,0 +1,1 @@
+Figure 6-2. The intuition of embeddings: each text is a point and texts with similar meaning are close to each other.

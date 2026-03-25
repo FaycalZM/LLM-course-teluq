@@ -1,0 +1,1 @@
+Figure 6-9. Several chunking methods and their effects on the input text. Overlapping chunks can be important to prevent the absence of context.

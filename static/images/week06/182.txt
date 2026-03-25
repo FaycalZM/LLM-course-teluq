@@ -1,0 +1,1 @@
+Figure 6-12. As we saw in Chapter 3, we can compare embeddings to quickly find the most similar documents to a query.

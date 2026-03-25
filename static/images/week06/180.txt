@@ -1,0 +1,1 @@
+Figure 6-10. A number of possible options for chunking a document for embedding.

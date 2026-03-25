@@ -4,4 +4,4 @@ weight: 1
 bookCollapseSection: true
 ---
 
-This is chapter 1.
+# Chapitre 01: Fondements des LLM (Semaines 1 - 5)

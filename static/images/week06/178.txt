@@ -1,0 +1,1 @@
+Figure 6-8. It’s possible to create one vector representing an entire document, but it’s better for longer documents to be split into smaller chunks that get their own embeddings.

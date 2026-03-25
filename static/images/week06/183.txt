@@ -1,0 +1,1 @@
+Figure 6-6. Before fine-tuning, the embeddings of both relevant and irrelevant queries may be close to a particular document.

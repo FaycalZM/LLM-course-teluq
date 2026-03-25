@@ -1,0 +1,1 @@
+Figure 6-3. Dense retrieval relies on the property that search queries will be close to their relevant results.

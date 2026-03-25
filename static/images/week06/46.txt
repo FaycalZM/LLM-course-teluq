@@ -1,0 +1,1 @@
+Figure 6-1. In step 1, we use the embedding model to extract the features and convert the input text to embeddings.

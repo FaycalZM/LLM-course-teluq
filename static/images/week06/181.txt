@@ -1,0 +1,1 @@
+Figure 6-11. Chunking the text into overlapping segments is one strategy to retain more of the context around different segments.
