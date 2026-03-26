@@ -13,6 +13,8 @@ Bonjour à toutes et à tous ! J'espère que vous avez bien en tête nos "étoil
 🔑 **Je dois insister :** en informatique, le sens n'est pas une intuition, c'est un calcul. Aujourd'hui, nous allons découvrir les règles de cette géométrie du sens. Respirez, nous allons transformer des angles en affinités.
 
 
+<a id="cos-sin"></a>
+
 ## La Similarité Cosinus : Le standard de l'industrie
 
 La mesure reine en NLP est la **Similarité Cosinus**. Pourquoi ne pas simplement utiliser une règle pour mesurer la distance entre deux points ? Parce que dans le langage, la "longueur" d'un vecteur (sa magnitude) peut être trompeuse.

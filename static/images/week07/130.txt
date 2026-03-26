@@ -1,0 +1,1 @@
+Figure 7-14. After applying the c-TF-IDF weighting, topics can be fine-tuned with a wide variety of representation models, many of which are large language models.

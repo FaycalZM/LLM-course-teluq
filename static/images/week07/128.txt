@@ -1,0 +1,1 @@
+Figure 7-12. Fine-tune the topic representations by reranking the original c-TF-IDF distributions.

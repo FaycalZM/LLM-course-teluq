@@ -12,6 +12,8 @@ Bonjour à toutes et à tous ! Imaginez un instant que vous soyez parachuté dan
 
 Dans cette dernière section de la semaine, nous allons explorer la magie de la classification **Zero-shot** (zéro-exemple). C'est l'une des applications les plus puissantes des modèles de représentation. Nous allons apprendre à classifier du texte simplement en utilisant la géométrie de l'espace vectoriel. Respirez, nous allons voir comment transformer un nom de classe en une position GPS mathématique.
 
+<a id="zero-shot"></a>
+
 ## L'intuition du Zero-shot : La comparaison sémantique
 La classification classique (supervisée) demande au modèle d'apprendre la frontière entre deux nuages de points. La classification Zero-shot, elle, repose sur une idée brillante illustrée dans les **Figures 4-9 à 4-12**. 
 

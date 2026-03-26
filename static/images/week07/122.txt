@@ -1,0 +1,1 @@
+Figure 7-9. Generating c-TF by counting the frequency of words per cluster instead of per document.

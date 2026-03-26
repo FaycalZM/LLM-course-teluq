@@ -1,0 +1,1 @@
+Figure 7-13. The reranker (representation) block sits on top of the c-TF-IDF representation.

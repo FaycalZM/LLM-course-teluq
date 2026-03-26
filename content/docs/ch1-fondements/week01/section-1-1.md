@@ -35,6 +35,9 @@ Le processus, méticuleusement détaillé dans les **Figures 1-3 à 1-5**, se d�
 **Attention : erreur fréquente ici !** Beaucoup d'étudiants pensent que le Bag-of-Words est une relique du passé. En réalité, il reste une "baseline" (référence) solide pour des tâches simples. Mais regardez bien la faille sémantique : les phrases "Le chat mange la souris" et "La souris mange le chat" produiront le *même* vecteur exact dans un modèle BoW standard. Pour la machine, le prédateur et la proie sont statistiquement identiques. On perd la structure, donc on perd le sens.
 {{% /hint %}}
 
+
+<a id="tf-idf"></a>
+
 ## De TF-IDF aux limites de la représentation creuse (Sparse)
 
 Pour affiner le comptage, les chercheurs ont introduit le **TF-IDF** (Term Frequency-Inverse Document Frequency). L'intuition est brillante : un mot qui apparaît partout (comme "le", "et", "est") n'apporte aucune information sur le sujet d'un texte. TF-IDF punit les mots trop fréquents et valorise les mots rares et spécifiques (comme "photosynthèse" ou "algorithme").

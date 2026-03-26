@@ -1,0 +1,1 @@
+Figure 7-4. Step 3: We cluster the documents using the embeddings with reduced dimensionality.

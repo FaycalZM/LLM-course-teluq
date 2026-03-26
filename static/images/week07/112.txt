@@ -1,0 +1,1 @@
+Figure 7-1. Step 1: We convert documents to embeddings using an embedding model.

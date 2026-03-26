@@ -1,0 +1,1 @@
+Figure 7-5. The clustering algorithm not only impacts how clusters are generated but also how they are viewed.

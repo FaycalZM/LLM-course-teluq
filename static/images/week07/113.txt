@@ -1,0 +1,1 @@
+Figure 7-2. Dimensionality reduction allows data in high-dimensional space to be com‐ pressed to a lower-dimensional representation.

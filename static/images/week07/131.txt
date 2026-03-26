@@ -1,0 +1,1 @@
+Figure 7-16. KeyBERTInspired representation model procedure.

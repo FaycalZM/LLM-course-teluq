@@ -1,0 +1,1 @@
+Figure 7-6. The generated clusters (colored) and outliers (gray) are represented as a 2D visualization.

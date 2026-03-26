@@ -1,0 +1,1 @@
+Figure 7-7. The modularity of BERTopic is a key component and allows you to build your own topic model however you want.
