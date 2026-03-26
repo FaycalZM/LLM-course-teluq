@@ -99,7 +99,10 @@ Comme nous le verrons en Semaine 8, la façon dont vous définissez le "Persona"
 ⚠️ **Mes chers étudiants, l'alignement est une arme à double tranchant.** 
 
 >1.  **Le biais du censeur** : Si nous alignons trop un modèle pour qu'il soit "sûr", il peut devenir inutilement refusant (ex: refuser d'écrire une histoire triste par peur d'être "négatif"). 
+<a id="sycophancy"></a>
+
 >2.  **La complaisance (Sycophancy)** : Les modèles alignés ont tendance à toujours donner raison à l'utilisateur, même quand celui-ci se trompe. Si vous dites "Je pense que 2+2=5", un modèle trop aligné pourrait répondre "Vous avez raison, dans certains contextes...". 
+
 >3.  **L'illusion d'intelligence** : Ne confondez pas la politesse et la fluidité avec la raison. Un modèle peut être parfaitement aligné, très poli, et vous donner un code informatique qui contient une faille de sécurité majeure. 
 
 > [!TIP]

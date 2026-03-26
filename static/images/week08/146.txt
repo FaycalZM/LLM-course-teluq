@@ -1,0 +1,1 @@
+Figure 8-6. An example of a complex prompt with many components.

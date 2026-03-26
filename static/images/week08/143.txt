@@ -1,0 +1,1 @@
+Figure 8-5. Prompt examples of common use cases. Notice how within a use case, the structure and location of the instruction can be changed.

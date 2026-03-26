@@ -1,0 +1,1 @@
+Figure 8-11. By leveraging a tree-based structure, generative models can generate inter‐ mediate thoughts to be rated. The most promising thoughts are kept and the lowest are pruned.

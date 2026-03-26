@@ -24,6 +24,8 @@ Comme l'illustre la [**Figure 1-2**]({{< relref "section-1-1.md" >}}#fig-1-2) et
 4.  **Enseignement et Tutorat** : En paramétrant un persona (vu en [**5.2**]({{< relref "section-5-2.md" >}}#ex-chat-persona)), un LLM peut devenir un tuteur patient qui explique la physique quantique à un enfant de 10 ans.
 
 
+<a id="hallucinations"></a>
+
 ## Le défi de la vérité : Hallucinations et Facticité
 
 > [!IMPORTANT]

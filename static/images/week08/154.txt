@@ -1,0 +1,1 @@
+Figure 8-14. Constrain the token selection to only three possible tokens: “positive,” “neutral,” and “negative.”

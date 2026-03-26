@@ -1,0 +1,1 @@
+Figure 8-3. Extending the prompt with an output indicator that allows for a specific output.

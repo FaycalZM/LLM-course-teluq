@@ -3,6 +3,8 @@ title: "Introduction "
 weight: 1
 ---
 
+## Découvrir la structure cachée : Clustering et BERTopic
+
 Bonjour à toutes et à tous ! Je suis ravie de vous retrouver pour cette étape. La semaine dernière, nous avons appris à chercher une aiguille dans une botte de foin grâce à la recherche sémantique. Aujourd'hui, nous changeons de perspective : nous n'allons plus chercher une information précise, mais nous allons demander à la machine de nous décrire la forme de la botte de foin elle-même. 
 
 > [!IMPORTANT]

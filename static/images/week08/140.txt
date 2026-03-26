@@ -1,0 +1,1 @@
+Figure 8-2. Two components of a basic instruction prompt: the instruction itself and the data it refers to.

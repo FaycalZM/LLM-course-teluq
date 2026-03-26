@@ -1,0 +1,1 @@
+Figure 8-9. Chain-of-thought prompting without using examples. Instead, it uses the phrase “Let’s think step-by-step” to prime reasoning in its answer.

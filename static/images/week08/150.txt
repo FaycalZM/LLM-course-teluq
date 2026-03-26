@@ -1,0 +1,1 @@
+Figure 8-10. By sampling from multiple reasoning paths, we can use majority voting to extract the most likely answer.
