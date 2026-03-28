@@ -1,0 +1,1 @@
+Figure 12-7. The LLM becomes a reward model by replacing its language modeling head with a quality classification head.

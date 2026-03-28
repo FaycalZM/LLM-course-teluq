@@ -1,0 +1,1 @@
+Figure 12-9. The three stages of preference tuning: collecting preference data, training a reward model, and finally fine-tuning the LLM.

@@ -1,0 +1,1 @@
+Figure 12-10. We can use multiple reward models to perform the scoring.

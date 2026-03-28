@@ -1,0 +1,1 @@
+Figure 12-13. Next-word prediction is a central feature of many LLMs.

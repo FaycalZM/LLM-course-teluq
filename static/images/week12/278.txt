@@ -1,0 +1,1 @@
+Figure 12-1. Use a preference evaluator (human or otherwise) to evaluate the quality of the generation.

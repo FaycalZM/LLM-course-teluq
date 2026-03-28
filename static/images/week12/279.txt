@@ -1,0 +1,1 @@
+Figure 12-2. Preference tuning methods update the LLM based on the evaluation score.

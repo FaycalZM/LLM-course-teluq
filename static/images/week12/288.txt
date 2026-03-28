@@ -1,0 +1,1 @@
+Figure 12-11. Use the LLM itself as the reward model by comparing the output of a frozen model with the trainable model.

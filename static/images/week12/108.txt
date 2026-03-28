@@ -1,0 +1,1 @@
+Figure 12-3. Manually labeled data consisting of an instruction (prompt) and output was used to perform fine-tuning (instruction-tuning).

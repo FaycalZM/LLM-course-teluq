@@ -1,0 +1,1 @@
+Figure 12-8. Use a reward model trained on human preference to generate the comple‐ tion quality score.
