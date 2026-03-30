@@ -54,7 +54,7 @@ graph TD
 ---
 
 > [!TIP]
-✉️ **Le message du Prof. Henni** : Ce chapitre est votre boussole. 
+✉️ **Mon message** : Ce chapitre est votre boussole. 
 
 > À la fin de la Semaine 5, vous ne regarderez plus jamais une boîte de dialogue d'IA de la même manière. Vous ne verrez plus des réponses, vous verrez des flux de probabilités naviguant dans une géométrie multidimensionnelle. 
 
