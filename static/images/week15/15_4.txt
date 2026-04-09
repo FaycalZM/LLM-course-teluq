@@ -1,0 +1,1 @@
+Figure 15-4. Training Pipeline Architecture
