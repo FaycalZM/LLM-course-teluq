@@ -13,6 +13,9 @@ Aujourd'hui, nous allons suivre le voyage d'un token, de sa naissance sous forme
 
 ---
 ## 1. L'architecture du flux
+
+<a id="fig-3-20"></a>
+
 Commençons par regarder la carte du trajet. La **Figure 3-20 : Les composants de la passe avant** est notre plan de vol. 
 
 {{< bookfig src="57.png" week="03" >}}

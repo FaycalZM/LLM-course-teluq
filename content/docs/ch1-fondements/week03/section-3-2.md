@@ -21,7 +21,7 @@ Sans une boussole pour indiquer l'ordre, notre cathédrale de calcul n'est qu'un
 
 **L'encodage positionnel**, c'est l'étiquette que l'on colle au dos de chaque pièce pour dire : "Je suis la pièce n°1, tout en haut à gauche". 
 
-Dans les RNN (Semaine 1.2), l'ordre était implicite : le mot 2 arrivait forcément après le mot 1. Dans le Transformer, nous devons injecter cette information artificiellement. 
+Dans les RNN (Section 1.2), l'ordre était implicite : le mot 2 arrivait forcément après le mot 1. Dans le Transformer, nous devons injecter cette information artificiellement. 
 
 > [!WARNING]
 ⚠️ **Attention : erreur fréquente ici !** On ne donne pas simplement un numéro (1, 2, 3...) au modèle. Pourquoi ? Parce que si la phrase est très longue, le nombre "1000" écraserait par sa valeur mathématique les autres informations du vecteur. Nous avons besoin d'une méthode plus subtile.

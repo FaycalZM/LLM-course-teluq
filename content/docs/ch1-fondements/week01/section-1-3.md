@@ -116,6 +116,8 @@ Nous allons maintenant faire le tour du propriétaire de ce qu'on appelle "**La 
 **Explication** : Le décodeur (celui qui génère le texte) a une contrainte éthique et mathématique : il ne doit pas lire le futur.
 *   On utilise une **Masked Self-Attention**. On "cache" les mots qui n'ont pas encore été générés. 
 
+<a id="fig-1-19"></a>
+
 {{< bookfig src="24.png" week="01" >}}
 *   La **Figure 1-19** montre cette matrice triangulaire où les mots ne peuvent regarder que vers le passé. C'est ce qui garantit que l'IA apprend vraiment à inventer la suite, et non à simplement copier ce qu'elle a déjà vu.
 

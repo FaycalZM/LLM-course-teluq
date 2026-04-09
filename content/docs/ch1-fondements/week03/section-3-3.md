@@ -21,6 +21,8 @@ Respirez, nous entrons dans l'ingénierie de la puissance.
 ## 1. L'architecture du bloc original
 Commençons par regarder les plans de la machine d'origine, telle qu'imaginée en 2017. Regardez la **Figure 3-10 : Un bloc Transformer de l'article original** .
 
+<a id="fig-3-10"></a>
+
 {{< bookfig src="82.png" week="03" >}}
 
 **ℹ️ Explication** : Cette illustration nous présente une unité de traitement composée de 2 "étages" superposés.
@@ -57,6 +59,8 @@ La normalisation est le thermostat qui maintient tout à une température stable
 
 ### LayerNorm vs RMSNorm
 Historiquement, nous utilisions la **LayerNorm**. Elle recalcule la moyenne et la variance de toutes les activations pour les ramener vers une **distribution standard** (moyenne 0, écart-type 1).
+
+<a id="fig-3-11"></a>
 
 📈 **L'évolution moderne** : Regardez la **Figure 3-11 : Bloc Transformer d'un modèle de l'ère 2024** . Vous remarquerez que l'on utilise désormais la **RMSNorm** (*Root Mean Square Layer Normalization*).
 

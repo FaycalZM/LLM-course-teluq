@@ -26,6 +26,8 @@ Le paramètre le plus célèbre est sans doute la **Température**. Mathématiqu
     *   *Analogie* : C'est une séance de remue-méninges (brainstorming) où toutes les idées, même les plus folles, sont bienvenues.
     *   *Usage* : Écriture de fiction, poésie, publicité.
 
+<a id="fig-5-7"></a>
+
 {{< bookfig src="137.png" week="05" >}}
 
 > [!WARNING]
