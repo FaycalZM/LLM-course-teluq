@@ -6,7 +6,7 @@ bookCollapseSection: true
 
 # Introduction : minGPT ou l'Épure du Génie
 
-Bonjour à toutes et à tous ! Nous y sommes. C'est un moment d'émotion pour moi. Pendant quatorze semaines, nous avons manipulé des concepts qui semblaient parfois abstraits : l'attention, les gradients, les couches résiduelles. Aujourd'hui, je vais vous montrer que tout cela tient dans moins de 300 lignes de code. Nous allons étudier **minGPT**, le projet d'Andrej Karpathy qui a fait tomber le mur de la complexité. 
+Bonjour à toutes et à tous ! Nous y sommes. C'est un moment d'émotion pour moi. Pendant quatorze semaines, nous avons manipulé des concepts qui semblaient parfois abstraits : l'attention, les gradients, les couches résiduelles. Aujourd'hui, je vais vous montrer que tout cela tient dans moins de 300 lignes de code. Nous allons étudier [**minGPT**](https://github.com/karpathy/minGPT), le projet d'Andrej Karpathy qui a fait tomber le mur de la complexité. 
 
 > [!IMPORTANT]
 **Je dois insister :** si vous savez lire ce code, vous savez lire l'esprit de n'importe quel LLM moderne. Ne voyez pas ce projet comme un jouet, voyez-le comme la "formule chimique" de l'intelligence artificielle.

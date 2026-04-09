@@ -7,7 +7,7 @@ bookCollapseSection: true
 
 # Introduction : L'Écosystème de l'Intelligence – Bâtir un Assistant de Production
 
-Bonjour à toutes et à tous ! Nous voici arrivés au sommet de notre parcours. Si le projet précédent, **minGPT**, nous a permis de comprendre l'atome de l'intelligence (le Transformer), le projet que nous étudions aujourd'hui, le **Second Brain AI Assistant**, va nous apprendre à construire l'univers qui l'entoure. 
+Bonjour à toutes et à tous ! Nous voici arrivés au sommet de notre parcours. Si le projet précédent, **minGPT**, nous a permis de comprendre l'atome de l'intelligence (le Transformer), le projet que nous étudions aujourd'hui, le [**Second Brain AI Assistant**](https://github.com/decodingai-magazine/second-brain-ai-assistant-course.git), va nous apprendre à construire l'univers qui l'entoure. 
 
 **Je dois insister :** dans le monde réel, un modèle seul ne sert à rien. Il a besoin d'une mémoire (RAG), de bras (Agents) et d'un système de surveillance (LLMOps). Aujourd'hui, nous cessons d'être de simples programmeurs de neurones pour devenir des architectes de systèmes. Préparez-vous, car nous allons apprendre à donner vie au concept de "Second Cerveau" !
 
