@@ -30,10 +30,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from sklearn.metrics.pairwise import cosine_similarity
 import random
 
-# Vérification du GPU
+# Hardware setup
 device = "cuda" if torch.cuda.is_available() else "cpu"
-print(f"Utilisation du matériel : {device}")
-
 model_id = "gpt2"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForCausalLM.from_pretrained(model_id, output_hidden_states=True).to(device)

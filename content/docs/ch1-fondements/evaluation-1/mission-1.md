@@ -33,6 +33,7 @@ import numpy as np
 # Vérification du GPU
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Utilisation du matériel : {device}")
+
 ```
 
 ---
