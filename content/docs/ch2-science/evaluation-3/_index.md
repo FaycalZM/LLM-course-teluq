@@ -9,7 +9,7 @@ bookCollapseSection: true
 Bonjour à toutes et à tous. Nous entamons aujourd'hui l'aboutissement de notre deuxième grand chapitre technique. Lors de l'évaluation précédente, vous avez construit un moteur capable de retrouver des documents. Aujourd'hui, nous allons lui donner une voix, mais une voix sous haute surveillance.
 
 > [!IMPORTANT]
-Je dois insister sur un point qui définit l'éthique de notre métier : une intelligence artificielle qui a du style mais qui invente ses propres faits est un danger pour l'utilisateur et une faute professionnelle pour l'ingénieur. 
+**Je dois insister sur un point qui définit l'éthique de notre métier** : une intelligence artificielle qui a du style mais qui invente ses propres faits est un danger pour l'utilisateur et une faute professionnelle pour l'ingénieur. 
 
 Dans cette épreuve, vous allez construire un système de Génération Augmentée par Récupération (RAG) complet. Votre mission est de transformer un modèle génératif en un expert de support technique pour une entreprise de Cloud Computing. Vous allez apprendre à ancrer la parole de la machine dans une base de connaissances stricte et à forcer l'IA à prouver chaque affirmation par une citation vérifiable. Nous passons de la simple discussion au contrat de preuve.
 
